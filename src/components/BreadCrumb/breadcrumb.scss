@@ -1,0 +1,35 @@
+/*Breadcrumb*/
+
+.breadcrumb_container {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+  margin-bottom: 25px;
+  .page_title {
+    font-size: 22px;
+    font-weight: 500;
+  }
+  .pipe {
+    margin: 0 10px;
+  }
+  .home_link {
+    margin: 0;
+    padding: 0;
+    color: var(--textColor);
+    font-size: 18px;
+  }
+  .icon {
+    margin: 0 10px;
+    font-size: 18px;
+    color: var(--textColor);
+  }
+  svg{
+    fill: var(--textColor);
+  }
+  .current_link {
+    font-size: 16px;
+    font-weight: 400;
+  }
+}

@@ -1,0 +1,32 @@
+/*Form*/
+
+.form_group {
+  width: 100%;
+  margin-bottom: 15px;
+  &:last-child {
+    margin-bottom: 0;
+  }
+  .form_label {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--subTextColor);
+    margin-bottom: 7.5px;
+    display: block;
+  }
+  .form_control {
+    border-radius: 5px;
+    border: 1px solid var(--subTextColor);
+    background-color: var(--background);
+    height: 35px;
+    width: 100%;
+    padding: 10px;
+    color: var(--textColor);
+    line-height: 1;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+  select.form_control{
+    padding: 0 10px;
+  }
+}

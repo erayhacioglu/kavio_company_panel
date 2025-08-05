@@ -1,0 +1,10 @@
+/*Base*/
+@use "./base/reset.scss" as *;
+@use "./base/general.scss" as *;
+/*Abstracts*/
+@use "./abstracts/mixins.scss" as *;
+@use "./abstracts/variables.scss" as *;
+/*Components*/
+@use "./components/custom_card.scss" as *;
+@use "./components/form.scss" as *;
+  

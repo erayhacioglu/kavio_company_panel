@@ -1,0 +1,27 @@
+/*Custom Card*/
+
+.custom_card {
+  border: 1px solid var(--borderColor);
+  border-radius: 12px;
+  background-color: var(--secondBackground);
+  padding: 0 !important;
+  &_header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--borderColor);
+    height: 55px;
+    padding: 0 20px;
+    font-size: 20px;
+    font-weight: 500;
+  }
+  &_body {
+    padding: 20px;
+  }
+  &_footer{
+    margin-top: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+}

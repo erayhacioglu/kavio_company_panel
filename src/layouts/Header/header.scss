@@ -1,0 +1,53 @@
+/*Header*/
+
+.header {
+  width: 100%;
+  background: var(--background);
+  position: sticky;
+  top: 0;
+  &.scrolled{
+    border-bottom: 1px solid var(--borderColor);
+  }
+  z-index:97;
+  .header_container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    .header_toggle_button {
+      font-size: 25px;
+      color: var(--textColor);
+    }
+    .header_config {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 15px;
+      .header_language {
+        border-radius: 100px;
+        padding: 5px 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--subTextColor);
+        background: var(--background);
+        cursor: pointer;
+        .header_language_text {
+          margin-left: 5px;
+          font-size: 1rem;
+          font-weight: 500;
+        }
+      }
+      .header_mode {
+        padding: 8px;
+        border-radius: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--subTextColor);
+        background: var(--background);
+        cursor: pointer;
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+/*Variables*/
+
+:root{
+    --background:#FFFFFF;
+    --secondBackground:#FFFFFF;
+    --secondBackgroundHover:#F5F5F5;
+    --sidebarBackground:#F9F9F9;
+    --sidebarHover:#EFEFEF;
+    --textColor:#0D0D0D;
+    --subTextColor:#8F8F8F;
+    --sidebarBorderColor:#EDEDED;
+    --headerBorderColor:#FAFAFA;
+    --borderColor:#D5D5D5;
+}
+
+html.dark{
+    --background:#212121;
+    --secondBackground:#303030;
+    --secondBackgroundHover:#212121;
+    --sidebarBackground:#181818;
+    --sidebarHover:#303030;
+    --textColor:#FFFFFF;
+    --subTextColor:#AFAFAF;
+    --sidebarBorderColor:#212121;
+    --headerBorderColor:#282828;
+    --borderColor:#3C3C3C;
+}
