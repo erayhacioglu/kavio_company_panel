@@ -1,4 +1,4 @@
-import BreadCrumb from "../../../components/Breadcrumb";
+import BreadCrumb from "../../../components/BreadCrumb";
 
 const Create = () => {
     return(
