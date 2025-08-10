@@ -1,7 +1,7 @@
 import {useEffect} from 'react'
 import { Modal, ModalBody, ModalFooter, ModalHeader } from 'react-bootstrap'
 import { useDispatch } from 'react-redux'
-import { addGroup,updateGroup } from '../../../redux/slices/GroupSlice'
+import { addGroup,updateGroup } from '../../../redux/slices/groupSlice'
 import { useFormik } from 'formik'
 import validationSchema from "../validationSchema";
 

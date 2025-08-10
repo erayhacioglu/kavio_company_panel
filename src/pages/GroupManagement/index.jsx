@@ -6,7 +6,7 @@ import GroupModal from "./components/GroupModal";
 import { FaTrash } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
 import toast from "react-hot-toast";
-import { deleteGroup, resetGroupSlice } from "../../redux/slices/GroupSlice";
+import { deleteGroup, resetGroupSlice } from "../../redux/slices/groupSlice";
 import Swal from "sweetalert2";
 
 const GroupManagement = () => {
