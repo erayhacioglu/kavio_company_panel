@@ -1,7 +1,6 @@
 import "./home.scss";
 import InfoCard from "../../components/InfoCard";
 import Carousel from "../../components/Carousel";
-import BreadCrumb from "../../components/BreadCrumb";
 
 const App = () => {
   return (
@@ -12,7 +11,11 @@ const App = () => {
         <div className="col-12">
           <div className="custom_card">
           <div className="custom_card_header">
-            Test Başlık
+            <span className="custom_card_title">Test Başlık</span>
+            <div className="custom_card_header_groups">
+              <button className="btn btn-sm btn-primary">Button</button>
+              <button className="btn btn-sm btn-success">Button 2</button>
+            </div>
           </div>
           <div className="custom_card_body">
             <div className="form_group">

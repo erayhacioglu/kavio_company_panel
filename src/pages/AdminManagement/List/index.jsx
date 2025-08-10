@@ -30,6 +30,13 @@ const List = () => {
               size: params.size,
               keyword: params.keyword,
             })}
+            headerButtons={
+              <>
+                <button className="btn btn-sm btn-primary">Button 1</button>
+                <button className="btn btn-sm btn-success">Button 2</button>
+                <button className="btn btn-sm btn-danger">Button 3</button>
+              </>
+            }
           />
         </div>
       </div>

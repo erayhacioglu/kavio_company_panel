@@ -15,8 +15,6 @@ const Header = ({ sidebar, setSidebar }) => {
 
   const [isScrolled, setIsScrolled] = useState(false);
 
-  console.log('isScrolled', isScrolled)
-
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -34,7 +32,7 @@ const Header = ({ sidebar, setSidebar }) => {
   return (
     <>
     <header className={`header ${isScrolled ? "scrolled":""}`}>
-      <div className="container">
+      <div className="container-fluid">
       <div className="header_container">
         <button className="header_toggle_button" onClick={() => setSidebar(prev => !prev)}>
           <FaBars />

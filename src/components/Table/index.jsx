@@ -19,12 +19,13 @@ const Table = ({
   clickable = false,
   onRowClick,
   paramsMapper,
+  headerButtons,
 }) => {
   const [data, setData] = useState([]);
   const [rowCount, setRowCount] = useState(0);
   const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 10 });
   const [globalFilter, setGlobalFilter] = useState("");
-  const [debouncedFilter, setDebouncedFilter] = useState(""); // debounced değer
+  const [debouncedFilter, setDebouncedFilter] = useState("");
   const [sorting, setSorting] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -111,14 +112,26 @@ const Table = ({
 
   return (
     <div className="data-table-container">
-      <div className="form_group">
-        <input
-          type="text"
-          placeholder="Ara..."
-          value={globalFilter}
-          onChange={(e) => setGlobalFilter(e.target.value)}
-          className="form_control"
-        />
+      <div className="row">
+        <div className="col-md-4">
+          <div className="form_group">
+            <input
+              type="text"
+              placeholder="Ara..."
+              value={globalFilter}
+              onChange={(e) => setGlobalFilter(e.target.value)}
+              className="form_control"
+            />
+          </div>
+        </div>
+        {headerButtons && (
+          <div
+            className="col-md-8 d-flex align-items-center justify-content-start justify-content-md-end my-3 my-md-0"
+            style={{ gap: "12px" }}
+          >
+            {headerButtons}
+          </div>
+        )}
       </div>
 
       <div className="table-responsive">
@@ -193,7 +206,7 @@ const Table = ({
       </div>
 
       <div className="pagination-bar d-flex justify-content-between">
-        <div className="d-flex gap-2 align-items-center">
+        <div className="d-flex gap-1 gap-md-2 align-items-center" style={{overflow:"auto"}}>
           <button
             onClick={() => table.setPageIndex(0)}
             disabled={!table.getCanPreviousPage()}

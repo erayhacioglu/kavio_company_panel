@@ -1,4 +1,4 @@
-import {Routes,Route} from "react-router";
+import { Routes, Route, Navigate } from "react-router";
 import Layout from "./layouts/Layout";
 import UserLayout from "./layouts/UserLayout";
 import Home from "./pages/Home";
@@ -11,8 +11,8 @@ import UserProfile from "./pages/UserDetail/UserProfile";
 import UserStatistics from "./pages/UserDetail/UserStatistics";
 
 const App = () => {
-  useTheme()
-  return(
+  useTheme();
+  return (
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
@@ -20,12 +20,13 @@ const App = () => {
         <Route path="admin-create" element={<AdminCreate />} />
 
         <Route path="user/:id" element={<UserLayout />}>
+          <Route index element={<Navigate to="profile" replace />} />
           <Route path="profile" element={<UserProfile />} />
-          <Route path="istatistik" element={<UserStatistics />} />
+          <Route path="statistics" element={<UserStatistics />} />
         </Route>
       </Route>
     </Routes>
   );
-}
+};
 
 export default App;

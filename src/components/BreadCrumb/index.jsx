@@ -34,7 +34,9 @@ const BreadCrumb = ({ pageTitle, topTitle }) => {
           <polyline points="6 17 11 12 6 7"></polyline>
         </svg>
       </span>
-      <span className="current_link">{topTitle}</span>
+      {
+        topTitle && <>
+        <span className="current_link">{topTitle}</span>
       <span className="icon">
         <svg
           stroke="currentColor"
@@ -51,6 +53,8 @@ const BreadCrumb = ({ pageTitle, topTitle }) => {
           <polyline points="6 17 11 12 6 7"></polyline>
         </svg>
       </span>
+        </>
+      }
       <span className="current_link">{pageTitle}</span>
     </div>
   );

@@ -1,7 +1,5 @@
 .data-table-container {
-    /* padding: 24px 0; */
     border-radius: 12px;
-    // background-color: var(--background);
     background-color: var(--secondBackground);
     padding: 15px 10px;
 }
@@ -94,7 +92,6 @@
  
 .data-table2 th,
 .data-table2 td {
-    /* padding: 8px; */
     font-size: 14px;
     border-bottom: 1px solid var(--borderColor);
     text-align: left;
@@ -123,7 +120,7 @@
 .skeleton {
   display: block;
   height: 14px;
-  background-color: #AFAFAF;// açık gri ton
+  background-color: #AFAFAF;
   border-radius: 4px;
   position: relative;
   overflow: hidden;
