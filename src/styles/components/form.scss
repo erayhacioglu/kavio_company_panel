@@ -13,6 +13,14 @@
     margin-bottom: 7.5px;
     display: block;
   }
+  .form_error{
+    display: flex;
+    align-items: center;
+    padding: 5px 0;
+    color: crimson;
+    font-size: 14px;
+    font-weight: 500;
+  }
   .form_control {
     border-radius: 5px;
     border: 1px solid var(--subTextColor);

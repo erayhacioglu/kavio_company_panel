@@ -13,7 +13,7 @@ body {
 }
 
 a {
-  color: initial !important;
+  color: var(--textColor) !important;
   text-decoration: none !important;
 }
 
@@ -26,6 +26,20 @@ button {
 
 .margin-25 {
   margin-top: 25px;
+}
+
+.btn_groups{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7.5px;
+}
+
+.btn_center{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff !important;
 }
 
 .content {

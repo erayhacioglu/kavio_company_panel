@@ -22,7 +22,8 @@ import {
   FaUserPlus,
   FaUsers,
   FaUsersGear,
-  FaWrench
+  FaWrench,
+  FaLayerGroup
 } from "react-icons/fa6";
 import {
   FaHandsHelping,
@@ -35,6 +36,12 @@ const menuData = [
     name: "Anasayfa",
     icon: <FaHome />,
     path: "/",
+  },
+  {
+    type: "item",
+    name: "Grup Yönetimi",
+    icon: <FaLayerGroup />,
+    path: "/group-list",
   },
 
   { type: "title", name: "Kart İşlemleri" },

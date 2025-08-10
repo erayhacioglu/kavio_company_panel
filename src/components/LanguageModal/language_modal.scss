@@ -1,19 +1,5 @@
 /*Language Modal*/
 
-.modal-content{
-    background: var(--secondBackground) !important;
-    color: var(--textColor) !important;
-}
-.modal-header{
-    border-bottom-color:transparent !important;
-    padding-bottom: 7.5px !important;
-    .btn-close{
-        padding: 0 !important;
-    }
-}
-.modal-body{
-    padding:0 10px !important;
-}
 .language_modal{
     padding: 15px 0 50px 0;
     &_img{

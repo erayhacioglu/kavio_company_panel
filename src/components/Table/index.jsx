@@ -20,6 +20,8 @@ const Table = ({
   onRowClick,
   paramsMapper,
   headerButtons,
+  refresh,
+  setRefresh
 }) => {
   const [data, setData] = useState([]);
   const [rowCount, setRowCount] = useState(0);
@@ -42,11 +44,8 @@ const Table = ({
     setPagination((prev) => ({ ...prev, pageIndex: 0 }));
   }, [debouncedFilter]);
 
-  // veri çekme
-  useEffect(() => {
-    if (!endpoint) return;
 
-    const fetchData = async () => {
+  const fetchData = async () => {
       setLoading(true);
       try {
         const defaultParams = {
@@ -62,8 +61,8 @@ const Table = ({
 
         const res = await Axios.get(endpoint, { params });
 
-        const items = Array.isArray(res?.data?.result?.results)
-          ? res.data.result.results
+        const items = Array.isArray(res?.data)
+          ? res.data
           : [];
 
         const total = Number.isFinite(res?.data?.result?.total)
@@ -78,11 +77,21 @@ const Table = ({
         setRowCount(0);
       } finally {
         setLoading(false);
+        setRefresh(false);
       }
     };
 
+  // veri çekme
+  useEffect(() => {
+    if (!endpoint) return;
     fetchData();
   }, [endpoint, pagination.pageIndex, pagination.pageSize, debouncedFilter]);
+
+  useEffect(() => {
+    if(refresh){
+      fetchData()
+    }
+  },[refresh]);
 
   const table = useReactTable({
     data,
@@ -112,7 +121,7 @@ const Table = ({
 
   return (
     <div className="data-table-container">
-      <div className="row">
+      <div className="row mb-4 d-flex align-items-center">
         <div className="col-md-4">
           <div className="form_group">
             <input

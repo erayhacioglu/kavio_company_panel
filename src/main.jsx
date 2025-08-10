@@ -8,18 +8,22 @@ import 'sweetalert2/src/sweetalert2.scss'
 import { Toaster } from 'react-hot-toast';
 import { HelmetProvider } from "react-helmet-async";
 import { BrowserRouter } from 'react-router';
+import { Provider } from 'react-redux';
+import store from "./redux/store";
 
-createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById("root")).render(
   <HelmetProvider>
     <BrowserRouter>
-      <App />
-      <Toaster
-        position="top-right"
-        reverseOrder={false}
-        toastOptions={{
-          duration:2500
-        }}
-      />
+      <Provider store={store}>
+        <App />
+        <Toaster
+          position="top-right"
+          reverseOrder={false}
+          toastOptions={{
+            duration: 2500,
+          }}
+        />
+      </Provider>
     </BrowserRouter>
-  </HelmetProvider>,
-)
+  </HelmetProvider>
+);

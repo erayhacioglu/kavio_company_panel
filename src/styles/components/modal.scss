@@ -1,0 +1,27 @@
+/*Modal*/
+
+.modal-content{
+    background: var(--secondBackground) !important;
+    color: var(--textColor) !important;
+}
+.modal-header{
+    border-color:var(--borderColor) !important;
+    padding-bottom: 7.5px !important;
+    .btn-close{
+        padding: 0 !important;
+    }
+}
+.modal-body{
+    padding:20px 10px !important;
+}
+.modal-footer{
+    border-color:var(--borderColor) !important;
+    padding:5px 10px !important;
+}
+
+.modal_footer_button_groups{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
