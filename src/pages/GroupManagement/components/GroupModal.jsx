@@ -19,10 +19,10 @@ const GroupModal = ({groupModalShow,setGroupModalShow,updatedData,setUpdatedData
   });
 
   useEffect(() => {
-    if(updatedData){
+    if(updatedData?.name){
       setFieldValue("name",updatedData?.name);
     }
-  },[updatedData,setFieldValue]);
+  },[updatedData.name,setFieldValue]);
 
   const completedHandleSubmit = () => {
     setRefresh(true);
@@ -53,7 +53,11 @@ const GroupModal = ({groupModalShow,setGroupModalShow,updatedData,setUpdatedData
     <Modal size="md"
       centered
       show={groupModalShow}
-      onHide={() => setGroupModalShow(false)}>
+      onHide={() => {
+        setGroupModalShow(false)
+        setUpdatedData(false);
+        resetForm();
+      }}>
         <ModalHeader closeButton>
           {updatedData ? "Grup Güncelleme":"Grup Ekleme"}
         </ModalHeader>
