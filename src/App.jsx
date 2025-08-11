@@ -10,6 +10,8 @@ import AdminCreate from "./pages/AdminManagement/Create";
 import UserProfile from "./pages/UserDetail/UserProfile";
 import UserStatistics from "./pages/UserDetail/UserStatistics";
 import GroupManagement from "./pages/GroupManagement";
+import CardManagement from "./pages/CardManagement";
+import CompanyInformation from "./pages/CompanyManagement/CompanyInformation";
 
 const App = () => {
   useTheme();
@@ -19,7 +21,9 @@ const App = () => {
         <Route index element={<Home />} />
         <Route path="admin-list" element={<AdminList />} />
         <Route path="admin-create" element={<AdminCreate />} />
-        <Route path="group-list" element={<GroupManagement />} />
+        <Route path="group-management" element={<GroupManagement />} />
+        <Route path="card-management" element={<CardManagement />} />
+        <Route path="company-information" element={<CompanyInformation />} />
 
         <Route path="user/:id" element={<UserLayout />}>
           <Route index element={<Navigate to="profile" replace />} />

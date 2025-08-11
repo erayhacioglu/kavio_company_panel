@@ -61,8 +61,10 @@ const Table = ({
 
         const res = await Axios.get(endpoint, { params });
 
-        const items = Array.isArray(res?.data)
-          ? res.data
+        console.log('res', res)
+
+        const items = Array.isArray(res?.data?.content)
+          ? res.data?.content
           : [];
 
         const total = Number.isFinite(res?.data?.result?.total)
