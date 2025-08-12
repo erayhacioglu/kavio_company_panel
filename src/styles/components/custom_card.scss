@@ -14,12 +14,12 @@
     border-bottom: 1px solid var(--borderColor);
     height: 55px;
     padding: 0 20px;
-    .custom_card_title{
+    .custom_card_title {
       font-size: 20px;
       font-weight: 500;
       color: var(--textColor);
     }
-    .custom_card_header_groups{
+    .custom_card_header_groups {
       display: flex;
       gap: 10px;
     }
@@ -27,10 +27,65 @@
   &_body {
     padding: 20px;
   }
-  &_footer{
+  &_footer {
     margin-top: 25px;
     display: flex;
     align-items: center;
     justify-content: flex-end;
+  }
+}
+
+.custom_card_dropdown {
+  position: relative;
+  .custom_card_dropdown_button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: 150ms;
+
+    &:hover {
+      background-color: var(--secondBackgroundHover);
+    }
+  }
+  .custom_card_dropdown_menu {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background: var(--secondBackground);
+    overflow: hidden;
+    z-index: 10;
+    border-radius: 4px;
+    border: 1px solid var(--borderColor);
+    padding: 0;
+    max-height: 0;
+    width: auto;
+    opacity: 0;
+    pointer-events: none;
+    transition: max-height 300ms ease, opacity 300ms ease;
+    .custom_card_dropdown_menu_item {
+      height: 35px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 0 20px;
+      color: var(--textColor);
+      transition: background-color 150ms;
+      cursor: pointer;
+      &:hover {
+        background-color: var(--secondBackgroundHover);
+      }
+    }
+    &.open {
+      max-height: 200px;
+      opacity: 1;
+      pointer-events: auto;
+    }
   }
 }
