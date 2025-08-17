@@ -25,7 +25,7 @@ const Layout = () => {
         })}
       >
         <Header sidebar={sidebar} setSidebar={setSidebar} />
-        <div className="container">
+        <div className="container-fluid container_limiter">
           <div className="page">
             <Outlet />
           </div>

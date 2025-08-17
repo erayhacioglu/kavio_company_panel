@@ -1,6 +1,7 @@
 import { Routes, Route, Navigate } from "react-router";
 import Layout from "./layouts/Layout";
-import UserLayout from "./layouts/UserLayout";
+import UserDetailLayout from "./layouts/UserLayout";
+import UserLayout from "./layouts/User";
 import Home from "./pages/Home";
 import useTheme from "./hooks/useTheme";
 //pages
@@ -12,6 +13,11 @@ import UserStatistics from "./pages/UserDetail/UserStatistics";
 import GroupManagement from "./pages/GroupManagement";
 import CardManagement from "./pages/CardManagement";
 import CompanyInformation from "./pages/CompanyManagement/CompanyInformation";
+//user
+import ProfilePage from "./pages/User/Profile";
+import SocialMediaPage from "./pages/User/SocialMedia";
+import CompanyPage from "./pages/User/Company";
+import CatalogPage from "./pages/User/Catalog";
 
 const App = () => {
   useTheme();
@@ -25,10 +31,18 @@ const App = () => {
         <Route path="card-management" element={<CardManagement />} />
         <Route path="company-information" element={<CompanyInformation />} />
 
-        <Route path="user/:id" element={<UserLayout />}>
+        <Route path="user/:id" element={<UserDetailLayout />}>
           <Route index element={<Navigate to="profile" replace />} />
           <Route path="profile" element={<UserProfile />} />
           <Route path="statistics" element={<UserStatistics />} />
+        </Route>
+
+        <Route path="user-update/:id" element={<UserLayout />}>
+          <Route index element={<Navigate to="profile" replace />} />
+          <Route path="profile" element={<ProfilePage />} />
+          <Route path="social-media" element={<SocialMediaPage />} />
+          <Route path="company" element={<CompanyPage />} />
+          <Route path="catalog" element={<CatalogPage />} />
         </Route>
       </Route>
     </Routes>

@@ -17,6 +17,10 @@ a {
   text-decoration: none !important;
 }
 
+.container_limiter{
+  max-width: 1280px;
+}
+
 button {
   background: none;
   border: none;
