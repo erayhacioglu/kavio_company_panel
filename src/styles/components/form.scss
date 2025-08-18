@@ -6,14 +6,34 @@
   &:last-child {
     margin-bottom: 0;
   }
+  .form_with_delete {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    .form_delete_button {
+      border-radius: 5px;
+      border: 1px solid var(--subTextColor);
+      background-color: var(--background);
+      height: 35px;
+      width: 35px;
+      // color: var(--textColor);
+      color: crimson;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
   .form_label {
     font-size: 16px;
     font-weight: 400;
     color: var(--subTextColor);
     margin-bottom: 7.5px;
     display: block;
+    text-transform: capitalize;
   }
-  .form_error{
+  .form_error {
     display: flex;
     align-items: center;
     padding: 5px 0;
@@ -34,7 +54,33 @@
     -webkit-appearance: none;
     -moz-appearance: none;
   }
-  select.form_control{
+  select.form_control {
     padding: 0 10px;
+  }
+}
+
+//Update
+.add_form_item_container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+  .add_form_item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 33px;
+    border-radius: 5px;
+    border: 1px solid var(--subTextColor);
+    color: var(--textColor);
+    padding: 0 10px;
+    font-size: 16px;
+    font-weight: 400;
+    text-transform: capitalize;
+    cursor: pointer;
+    &:active {
+      transform: scale(0.9);
+      transition: transform 0.3s ease;
+    }
   }
 }
