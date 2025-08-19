@@ -1,5 +1,6 @@
 import { Routes, Route, Navigate } from "react-router";
 import Layout from "./layouts/Layout";
+import AuthLayout from "./layouts/AuthLayout";
 import UserDetailLayout from "./layouts/UserLayout";
 import UserLayout from "./layouts/User";
 import Home from "./pages/Home";
@@ -18,6 +19,7 @@ import ProfilePage from "./pages/User/Profile";
 import SocialMediaPage from "./pages/User/SocialMedia";
 import CompanyPage from "./pages/User/Company";
 import CatalogPage from "./pages/User/Catalog";
+import Login from "./pages/Auth/Login";
 
 const App = () => {
   useTheme();
@@ -44,6 +46,9 @@ const App = () => {
           <Route path="company" element={<CompanyPage />} />
           <Route path="catalog" element={<CatalogPage />} />
         </Route>
+      </Route>
+      <Route path="/auth" element={<AuthLayout />}>
+        <Route path="login" element={<Login/>}/>
       </Route>
     </Routes>
   );
