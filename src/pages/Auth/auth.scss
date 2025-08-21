@@ -6,6 +6,7 @@
   grid-template-columns: 35% 65%;
   position: relative;
   isolation: isolate;
+  overflow: hidden;
   .login_brand {
     padding: 30px 0;
     display: flex;
