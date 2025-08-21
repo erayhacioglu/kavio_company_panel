@@ -23,6 +23,7 @@ import Login from "./pages/Auth/Login";
 
 const App = () => {
   useTheme();
+  console.log(import.meta.env.VITE_API_URL);
   return (
     <Routes>
       <Route path="/" element={<Layout />}>

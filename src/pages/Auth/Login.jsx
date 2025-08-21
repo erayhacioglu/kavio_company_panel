@@ -3,9 +3,24 @@ import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import loginImg from "../../assets/images/login_img.png";
 import logo from "../../assets/images/logo.svg";
 import { Link } from "react-router";
+import Axios from "../../services/Axios";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
+
+  const [loginData,setLoginData] = useState({
+    email:"",
+    password:""
+  });
+
+  const handleLogin = async () => {
+    try {
+      const res = await Axios.post("/admin/login",loginData);
+      console.log('res', res)
+    } catch (error) {
+      console.log('error', error)
+    }
+  }
 
   return (
     <div className="login_container">
@@ -44,6 +59,8 @@ const Login = () => {
               type="text"
               placeholder=" "
               autoComplete="username"
+              value={loginData?.email}
+              onChange={(e) => setLoginData((prev) => ({...prev,email:e.target.value}))}
             />
             <label htmlFor="email">E-Mail</label>
           </div>
@@ -54,6 +71,8 @@ const Login = () => {
               type={showPassword ? "text" : "password"}
               placeholder=" "
               autoComplete="current-password"
+              value={loginData?.password}
+              onChange={(e) => setLoginData((prev) => ({...prev,password:e.target.value}))}
             />
             <label htmlFor="password">Şifre</label>
 
@@ -74,7 +93,7 @@ const Login = () => {
             <Link className="forgot_password_link">Şifremi Unuttum?</Link>
           </div>
 
-          <button className="login_panel_button">Giriş</button>
+          <button className="login_panel_button" onClick={handleLogin}>Giriş</button>
         </div>
       </div>
     </div>
