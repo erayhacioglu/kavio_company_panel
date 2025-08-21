@@ -20,3 +20,7 @@ export const linkData = [
         contactType: "fax"
     }
 ];
+
+export const generateMessage = (error,frontMessage) => {
+    return error?.response?.data?.message || `[${frontMessage}] Beklenmeyen Bir Hata Oluştu`
+}

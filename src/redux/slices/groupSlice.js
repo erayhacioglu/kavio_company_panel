@@ -1,21 +1,20 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import Axios from "axios";
+import Axios from "../../services/Axios";
+import { generateMessage } from "../../helpers";
 
 export const addGroup = createAsyncThunk(
   "[POST]/user-groups",
   async ({name,companyId = "1"}, thunkAPI) => {
     try {
-      const res = await Axios.post(`https://api.kavio.co/api/user-groups`,{
+      const res = await Axios.post(`/user-groups`,{
         name,
         companyId
       });
       if(res?.status === 200){
         return res?.data;
       }
-    } catch (err) {
-      const message =
-        err?.response?.data?.message || err?.message || "Beklenmeyen bir hata";
-      return thunkAPI.rejectWithValue(message);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(generateMessage(error,"Add Group Error"));
     }
   }
 );
@@ -24,17 +23,15 @@ export const updateGroup = createAsyncThunk(
   "[PUT]/user-groups/${id}",
   async ({name,id,companyId = "1"}, thunkAPI) => {
     try {
-      const res = await Axios.put(`https://api.kavio.co/api/user-groups/${id}`,{
+      const res = await Axios.put(`/user-groups/${id}`,{
         name,
         companyId
       });
       if(res?.status === 200){
         return res?.data;
       }
-    } catch (err) {
-      const message =
-        err?.response?.data?.message || err?.message || "Beklenmeyen bir hata";
-      return thunkAPI.rejectWithValue(message);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(generateMessage(error,"Update Group Error"));
     }
   }
 );
@@ -43,15 +40,12 @@ export const deleteGroup = createAsyncThunk(
   "[DELETE]/user-groups/${id}",
   async ({id}, thunkAPI) => {
     try {
-      const res = await Axios.delete(`https://api.kavio.co/api/user-groups/${id}`);
+      const res = await Axios.delete(`/user-groups/${id}`);
       if(res?.status === 200){
         return res?.data;
       }
-    } catch (err) {
-      console.log('err', err)
-      const message =
-        err?.response?.data?.detail || err?.message || "Beklenmeyen bir hata";
-      return thunkAPI.rejectWithValue(message);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(generateMessage(error,"Delete Group Error"));
     }
   }
 );

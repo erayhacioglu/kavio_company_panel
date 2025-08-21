@@ -3,5 +3,28 @@
     "title": "Lütfen Dil Seçiniz",
     "turkishButtonText": "Türkçe",
     "englishButtonText": "İngilizce"
+  },
+  "auth": {
+    "login": {
+      "metaTitle": "Giriş",
+      "metaDescription": "Kavio Giriş Ekranı",
+      "metaKeywords": "Kavio",
+      "brandTitle": "Şirket Yönetim Paneli",
+      "brandSubTitle": "Yetkili kullanıcılar için güvenli giriş alanı",
+      "formTitle": "Hesabınıza Giriş Yapın",
+      "formSubTitle": "Hesabınız yok mu?",
+      "formSubTitleLink": "Başlayın",
+      "forgotPasswordText": "Şifremi Unuttum?",
+      "emailInputLabel": "E-Mail",
+      "emailErrorMessage": "E-Mail",
+      "passwordInputLabel": "Şifre",
+      "passwordErrorMessage": "Şifre",
+      "submitButtonText": "Giriş Yap",
+      "validation": {
+        "required_email": "E-Mail alanı boş bırakılamaz",
+        "invalid_email": "Geçersiz email",
+        "required_password": "Şifre alanı boş bırakılamaz"
+      }
+    }
   }
 }

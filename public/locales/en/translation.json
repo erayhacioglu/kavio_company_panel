@@ -3,5 +3,28 @@
     "title": "Please Select Language",
     "turkishButtonText": "Turkish",
     "englishButtonText": "English"
+  },
+  "auth": {
+    "login": {
+      "metaTitle": "Sign In",
+      "metaDescription": "Kavio Sign In Screen",
+      "metaKeywords": "Kavio",
+      "brandTitle": "Company Management Panel",
+      "brandSubTitle": "Secure login area for authorized users",
+      "formTitle": "Sign In to Your Account",
+      "formSubTitle": "Don't have an account?",
+      "formSubTitleLink": "Get Started",
+      "forgotPasswordText": "Forgot Password?",
+      "emailInputLabel": "Email",
+      "emailErrorMessage": "Email is required",
+      "passwordErrorMessage": "Password is required",
+      "passwordInputLabel": "Password",
+      "submitButtonText": "Sign In",
+      "validation": {
+        "required_email": "Email field cannot be empty",
+        "invalid_email": "Invalid email address",
+        "required_password": "Password field cannot be empty"
+      }
+    }
   }
 }

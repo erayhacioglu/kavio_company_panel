@@ -21,35 +21,41 @@ import CompanyPage from "./pages/User/Company";
 import CatalogPage from "./pages/User/Catalog";
 import Login from "./pages/Auth/Login";
 
+import RequireAuth from "./layouts/routes/RequireAuth";
+import RequireGuest from "./layouts/routes/RequireGuest";
+
 const App = () => {
   useTheme();
-  console.log(import.meta.env.VITE_API_URL);
   return (
     <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<Home />} />
-        <Route path="admin-list" element={<AdminList />} />
-        <Route path="admin-create" element={<AdminCreate />} />
-        <Route path="group-management" element={<GroupManagement />} />
-        <Route path="card-management" element={<CardManagement />} />
-        <Route path="company-information" element={<CompanyInformation />} />
+      <Route element={<RequireAuth />}>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="admin-list" element={<AdminList />} />
+          <Route path="admin-create" element={<AdminCreate />} />
+          <Route path="group-management" element={<GroupManagement />} />
+          <Route path="card-management" element={<CardManagement />} />
+          <Route path="company-information" element={<CompanyInformation />} />
 
-        <Route path="user/:id" element={<UserDetailLayout />}>
-          <Route index element={<Navigate to="profile" replace />} />
-          <Route path="profile" element={<UserProfile />} />
-          <Route path="statistics" element={<UserStatistics />} />
-        </Route>
+          <Route path="user/:id" element={<UserDetailLayout />}>
+            <Route index element={<Navigate to="profile" replace />} />
+            <Route path="profile" element={<UserProfile />} />
+            <Route path="statistics" element={<UserStatistics />} />
+          </Route>
 
-        <Route path="user-update/:id" element={<UserLayout />}>
-          <Route index element={<Navigate to="profile" replace />} />
-          <Route path="profile" element={<ProfilePage />} />
-          <Route path="social-media" element={<SocialMediaPage />} />
-          <Route path="company" element={<CompanyPage />} />
-          <Route path="catalog" element={<CatalogPage />} />
+          <Route path="user-update/:id" element={<UserLayout />}>
+            <Route index element={<Navigate to="profile" replace />} />
+            <Route path="profile" element={<ProfilePage />} />
+            <Route path="social-media" element={<SocialMediaPage />} />
+            <Route path="company" element={<CompanyPage />} />
+            <Route path="catalog" element={<CatalogPage />} />
+          </Route>
         </Route>
       </Route>
-      <Route path="/auth" element={<AuthLayout />}>
-        <Route path="login" element={<Login/>}/>
+      <Route element={<RequireGuest />}>
+        <Route path="/auth" element={<AuthLayout />}>
+          <Route path="login" element={<Login />} />
+        </Route>
       </Route>
     </Routes>
   );

@@ -85,7 +85,7 @@ const handleCopy = (id, code) => {
           <div className="col-md-12">
             <Table
               columns={columns}
-              endpoint="https://api.kavio.co/api/company-admin/users"
+              endpoint="/company-admin/users"
               paramsMapper={(params) => ({
                 page: params.page,
                 size: params.size,

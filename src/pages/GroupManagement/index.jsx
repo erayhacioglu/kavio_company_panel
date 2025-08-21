@@ -115,7 +115,7 @@ const GroupManagement = () => {
           <div className="col-md-12">
             <Table
               columns={columns}
-              endpoint="https://api.kavio.co/api/user-groups/company/1"
+              endpoint="/user-groups/company/1"
               paramsMapper={(params) => ({
                 page: params.page,
                 size: params.size,

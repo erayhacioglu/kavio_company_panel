@@ -9,7 +9,7 @@ import { CgSortAz, CgSortZa } from "react-icons/cg";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { FiChevronsLeft, FiChevronsRight } from "react-icons/fi";
 import { useEffect, useMemo, useState } from "react";
-import Axios from "axios";
+import Axios from "../../services/Axios";
 import { renderPageButtons } from "./helpers";
 import "./table.scss";
 
