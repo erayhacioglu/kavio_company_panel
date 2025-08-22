@@ -23,9 +23,24 @@ import Login from "./pages/Auth/Login";
 
 import RequireAuth from "./layouts/routes/RequireAuth";
 import RequireGuest from "./layouts/routes/RequireGuest";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { getUserInfo } from "./redux/slices/userSlice";
 
 const App = () => {
   useTheme();
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const findIsLogin = localStorage.getItem("isLogin");
+    console.log('findIsLogin', findIsLogin)
+    if(findIsLogin){
+      dispatch(getUserInfo());
+    }
+  },[dispatch]);
+
+
   return (
     <Routes>
       <Route element={<RequireAuth />}>
