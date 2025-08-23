@@ -1,1 +1,72 @@
 /*Page Loader*/
+
+// Kurumsal degrade – görseldeki gibi sıcak açık gri tonlar
+$grad-top:  #d6d3c9; // üst
+$grad-bot:  #a8a59c; // alt
+
+$page-bg:   #f7fafc;
+$text:      #1a202c;
+
+.page-loader__overlay {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  z-index: 9999;
+  background: $page-bg;
+  transition: opacity .6s ease, visibility .6s ease;
+
+  &.is-hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+}
+
+.page-loader__card {
+  text-align: center;
+  padding: 24px 18px;
+}
+
+.page-loader__letters {
+  display: flex;
+  gap: 14px;
+  font-size: clamp(28px, 5vw, 48px);
+  font-weight: 800;
+}
+
+.page-loader__letter {
+  display: inline-block;
+  opacity: .3;
+  background: linear-gradient(180deg, $grad-top, $grad-bot);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: kavio-wave 1s infinite;
+}
+
+// Harfler sırayla dalga etkisiyle yukarı kalkar
+@keyframes kavio-wave {
+  0%, 100% { transform: translateY(0);   opacity: .3; }
+  50%      { transform: translateY(-14px); opacity: 1; }
+}
+
+.page-loader__progress {
+  margin-top: 18px;
+  height: 8px;
+  width: 240px;
+  max-width: 70vw;
+  border-radius: 999px;
+  background: #e2e8f0;
+  overflow: hidden;
+}
+
+.page-loader__progress-bar {
+  display: block;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(180deg, $grad-top, $grad-bot);
+  transition: width .2s ease;
+}
+
+.page-loader__text {
+  margin-top: 10px;
+  font-size: 1rem;
+  color: $text;
+  font-weight: 500;
+}

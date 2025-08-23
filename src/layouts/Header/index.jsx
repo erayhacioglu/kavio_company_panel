@@ -1,17 +1,22 @@
-import { FaBars } from "react-icons/fa";
+import { FaBars, FaUserCircle } from "react-icons/fa";
 import "./header.scss";
-import { FaGlobe } from "react-icons/fa6";
+import { FaCircleUser, FaGear, FaGlobe, FaRightFromBracket } from "react-icons/fa6";
 import { MdLightMode,MdNightlightRound } from "react-icons/md";
 import useTheme from "../../hooks/useTheme";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import LanguageModal from "../../components/LanguageModal";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
+import { Link } from "react-router";
 
 
 const Header = ({ sidebar, setSidebar }) => {
   const {theme,toggleTheme} = useTheme();
   const [languageModal,setLanguageModal] = useState(false);
   const { t, i18n } = useTranslation();
+  const {user} = useSelector(state => state.user);
+  const userLetter = user ? `${user?.name[0]}${user?.surname[0]}`:"AA"
+  console.log('user', user)
 
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -28,6 +33,23 @@ const Header = ({ sidebar, setSidebar }) => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  const [open, setOpen] = useState(false);
+    const dropdownRef = useRef(null);
+  
+    // Dışa tıklamayı yakalayan useEffect
+    useEffect(() => {
+      function handleClickOutside(event) {
+        if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+          setOpen(false);
+        }
+      }
+  
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, []);
 
   return (
     <>
@@ -47,7 +69,30 @@ const Header = ({ sidebar, setSidebar }) => {
               theme === "light" ? <MdNightlightRound />:<MdLightMode/>
             }
           </div>
-          <div className="header_user_menu"></div>
+          <div className="header_user_menu" ref={dropdownRef} onClick={() => setOpen((prev) => !prev)}>
+            <div className="user_menu_circle">{userLetter}</div>
+            <div className="user_menu_info">
+              <h2 className="user_menu_info_fullname">{user?.name}&nbsp;{user?.surname}</h2>
+              <h5 className="user_menu_info_role">{user?.role}</h5>
+            </div>
+            <div className={`header_user_menu_dropdown ${
+                      open ? "open" : ""
+                    }`}>
+              <Link to="/" className="header_user_menu_dropdown_item">
+                <FaCircleUser size={18}/>&nbsp;&nbsp;{user?.email}
+              </Link>
+              <Link to="/" className="header_user_menu_dropdown_item">
+                <FaGear size={18}/>&nbsp;&nbsp;Ayarlar
+              </Link>
+              <div className="header_user_menu_dropdown_divider"/>
+              <div className="header_user_menu_dropdown_item" onClick={() => {
+                localStorage.clear()
+                window.location.href="/auth/login"
+              }}>
+                <FaRightFromBracket size={18}/>&nbsp;&nbsp;Oturumu Kapat
+              </div>
+            </div>
+          </div>
         </div>
         </div>
       </div>

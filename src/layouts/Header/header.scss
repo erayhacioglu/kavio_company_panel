@@ -5,15 +5,15 @@
   background: var(--background);
   position: sticky;
   top: 0;
-  &.scrolled{
+  &.scrolled {
     border-bottom: 1px solid var(--borderColor);
   }
-  z-index:97;
+  z-index: 97;
   .header_container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 60px;
+    height: 65px;
     .header_toggle_button {
       font-size: 25px;
       color: var(--textColor);
@@ -47,6 +47,89 @@
         border: 1px solid var(--subTextColor);
         background: var(--background);
         cursor: pointer;
+      }
+      .header_user_menu {
+        position: relative;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        .user_menu_circle {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          border: var(--borderColor);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-transform: uppercase;
+          background-color: #339ccf;
+          color: #fff;
+          font-size: 15px;
+        }
+        .user_menu_info {
+          margin-left: 10px;
+          .user_menu_info_fullname {
+            padding: 0;
+            margin: 0;
+            font-size: 18px !important;
+            font-weight: 500;
+            color: var(--textColor);
+            text-transform: capitalize;
+            text-align: left;
+          }
+          .user_menu_info_role {
+            padding: 0;
+            margin: 0;
+            font-size: 12px !important;
+            font-weight: 400;
+            color: var(--subTextColor);
+            text-transform: capitalize;
+            text-align: left;
+            margin-top: 5px;
+          }
+        }
+        .header_user_menu_dropdown {
+          position: absolute;
+          top: 110%;
+          right: 0;
+          background: var(--background);
+          border: 1px solid var(--borderColor);
+          min-width: 250px;
+          border-radius: 16px;
+          z-index: 50;
+          opacity: 0;
+          pointer-events: none;
+          padding: 10px 6px;
+          .header_user_menu_dropdown_divider{
+            height: 1px;
+            background-color: var(--subTextColor);
+            margin: 10px auto;
+            width: calc(100% - 12px);
+          }
+          .header_user_menu_dropdown_item {
+            margin: 0 6px;
+            padding:0 10px;
+            display: flex;
+            align-items: center;
+            min-height: 36px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 5px;
+            font-size: 15px;
+            cursor: pointer;
+            color: var(--textColor);
+            &:last-child{
+              margin-bottom: 0;
+            }
+            &:hover {
+              background: var(--sidebarHover);
+            }
+          }
+          &.open {
+            opacity: 1;
+            pointer-events: auto;
+          }
+        }
       }
     }
   }

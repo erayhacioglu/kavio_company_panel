@@ -28,7 +28,11 @@ instance.interceptors.request.use(async function (config) {
     (error) => {
       if (error.response) {
         if (error.response.status === 401) {
-          // store.dispatch(logout());
+          localStorage.clear();
+          // window.location = "/auth/login";
+        }
+        if (error.response.status === 403) {
+          localStorage.clear();
           // window.location = "/auth/login";
         }
       }

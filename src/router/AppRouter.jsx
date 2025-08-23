@@ -36,7 +36,7 @@ const Forbidden = lazy(() => import("../pages/ErrorPages/Forbidden"));
 
 export default function AppRouter() {
   return (
-    <Suspense fallback={<PageLoader />}>
+    <Suspense fallback={<PageLoader letters="KAVİO" loadingText="Yükleniyor..." speed={100} step={10} />}>
       <Routes>
         {/* GUEST */}
         <Route element={<GuestRoute />}>
