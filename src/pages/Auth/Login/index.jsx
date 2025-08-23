@@ -2,12 +2,16 @@ import { useEffect, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
 import loginImg from "../../../assets/images/login_img.png";
 import logo from "../../../assets/images/logo.svg";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import Axios from "../../../services/Axios";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
-import { login, userSliceReset } from "../../../redux/slices/userSlice";
+import {
+  getUserInfo,
+  login,
+  userSliceReset,
+} from "../../../redux/slices/userSlice";
 import { Spinner } from "react-bootstrap";
 import { getValidationSchema } from "./loginValidation";
 import { useTranslation } from "react-i18next";
@@ -29,9 +33,12 @@ const customLoginMessage = {
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
-  const { isLoading, isSuccess, isError, message } = useSelector(
+  const { isLoading, isSuccess, isError, message, user } = useSelector(
     (state) => state.user
   );
+  const location = useLocation;
+
+  const from = location.state?.from?.pathname || "/";
 
   const navigate = useNavigate();
 
@@ -44,15 +51,19 @@ const Login = () => {
         password: "",
       },
       validationSchema: getValidationSchema,
-      onSubmit: (values) => {
+      onSubmit: async (values) => {
         if (values?.email && values?.password) {
-          dispatch(login(values));
+          const loginRes = await dispatch(login(values)).unwrap();
+          if (loginRes?.accessToken) {
+            await dispatch(getUserInfo());
+            navigate(from || "/", { replace: true });
+          }
         }
       },
     });
 
   useEffect(() => {
-    if (isSuccess) {
+    if (isSuccess && user) {
       toast.success(
         `${customLoginMessage[i18n?.language]?.success?.loginSuccessMessage}`
       );
@@ -64,7 +75,7 @@ const Login = () => {
     return () => {
       dispatch(userSliceReset());
     };
-  }, [dispatch, isSuccess, isError, message, navigate]);
+  }, [dispatch, isSuccess, isError, message, navigate, i18n?.language, user]);
 
   return (
     <>

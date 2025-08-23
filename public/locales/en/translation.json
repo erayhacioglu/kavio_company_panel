@@ -26,5 +26,25 @@
         "required_password": "Password field cannot be empty"
       }
     }
+  },
+  "errorPages": {
+    "forbidden": {
+      "title": "403 - Unauthorized Access",
+      "message": "You do not have the required permissions to view this page. Try logging in with your account, switching to a role you are authorized for, or returning to the homepage.",
+      "linkText": "Homepage",
+      "subMessageTitle": "Tip:",
+      "subMessage": "If you believe you should have access, request a role/permission check from your administrator.",
+      "supportText": "Support & Contact",
+      "errorCode": "Error Code:"
+    },
+    "notFound": {
+      "title": "404 – Page Not Found",
+      "message": "The page you’re looking for might have been moved, deleted, or never existed. Check the address or go back to the homepage.",
+      "linkText": "Homepage",
+      "supportText": "Contact support",
+      "subMessageTitle": "Tip:",
+      "subMessage": "Use the navigation menu to find what you need or reach out to our support team.",
+      "errorCode": "Error Code:"
+    }
   }
 }

@@ -1,4 +1,6 @@
 import axios from "axios";
+// import store from "../redux/store";
+// import { logout } from "../redux/slices/userSlice";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -21,20 +23,19 @@ instance.interceptors.request.use(async function (config) {
     config.headers["Authorization"] = "Bearer " + token;
   }
 
-//   instance.interceptors.response.use(
-//     (response) => response,
-//     (error) => {
-//       if (error.response) {
-//         if (error.response.status === 401) {
-//           OAuth.logout();
-//         }
-//       } else {
-//         console.log("Ağ hatası veya başka bir hata:", error);
-//       }
+  instance.interceptors.response.use(
+    (response) => response,
+    (error) => {
+      if (error.response) {
+        if (error.response.status === 401) {
+          // store.dispatch(logout());
+          // window.location = "/auth/login";
+        }
+      }
 
-//       return Promise.reject(error);
-//     }
-//   );
+      return Promise.reject(error);
+    }
+  );
 
   return config;
 });

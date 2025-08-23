@@ -26,5 +26,25 @@
         "required_password": "Şifre alanı boş bırakılamaz"
       }
     }
+  },
+  "errorPages": {
+    "forbidden": {
+      "title": "403 - Yetkisiz Erişim",
+      "message": "Bu sayfayı görüntülemek için gerekli izinlere sahip değilsiniz.Hesabınızla giriş yapmayı, yetkili olduğunuz bir role geçmeyi veya ana sayfaya dönmeyi deneyin.",
+      "linkText": "Anasayfa",
+      "subMessageTitle": "İpucu:",
+      "subMessage": "Erişiminiz olması gerektiğini düşünüyorsanız, yöneticinizden rol/izin kontrolü talep edin.",
+      "supportText": "Destek & İletişim",
+      "errorCode": "Hata Kodu:"
+    },
+    "notFound": {
+      "title": "404 – Sayfa Bulunamadı",
+      "message": "Aradığınız sayfa taşınmış, silinmiş ya da hiç var olmamış olabilir. Adresi kontrol edin veya ana sayfaya dönün.",
+      "linkText": "Anasayfa",
+      "supportText": "Destek ile iletişime geç",
+      "subMessageTitle": "İpucu:",
+      "subMessage": "Menüyü kullanarak aradığınız içeriğe ulaşabilir ya da destek ekibimize yazabilirsiniz.",
+      "errorCode": "Hata Kodu:"
+    }
   }
 }
