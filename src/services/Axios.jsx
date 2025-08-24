@@ -33,7 +33,7 @@ instance.interceptors.request.use(async function (config) {
         }
         if (error.response.status === 403) {
           localStorage.clear();
-          // window.location = "/auth/login";
+          window.location = "/auth/login";
         }
       }
 

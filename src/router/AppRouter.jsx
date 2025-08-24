@@ -51,9 +51,7 @@ export default function AppRouter() {
             <Route index element={<Home />} />
 
             {/* Genel protected sayfalar */}
-            <Route element={<RoleRoute allowedRoles={["ADMIN"]}/>}>
             <Route path="group-management" element={<GroupManagement />} />
-            </Route>
             <Route path="card-management" element={<CardManagement />} />
             <Route path="admin-list" element={<AdminList />} />
             <Route path="admin-create" element={<AdminCreate />} />

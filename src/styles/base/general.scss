@@ -17,7 +17,7 @@ a {
   text-decoration: none !important;
 }
 
-.container_limiter{
+.container_limiter {
   max-width: 1280px;
 }
 
@@ -32,20 +32,19 @@ button {
   margin-top: 25px;
 }
 
-.btn_groups{
+.btn_groups {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 7.5px;
 }
 
-.btn_center{
+.btn_center {
   display: flex;
   align-items: center;
   justify-content: center;
   color: #ffffff !important;
 }
-
 .content {
   position: relative;
   height: 100%;

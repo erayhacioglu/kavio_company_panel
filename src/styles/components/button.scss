@@ -1,0 +1,57 @@
+/*Buttons*/
+
+.btn_primary {
+    background-color: var(--primaryColor) !important;
+    color: white !important;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn_success:hover {
+    background-color: var(--primaryHoverColor) !important;
+}
+
+.btn_success {
+    background-color: var(--successColor) !important;
+    color: white !important;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn_success:hover {
+    background-color: var(--successHoverColor) !important;
+}
+
+.btn_danger {
+    background-color: var(--dangerColor) !important;
+    color: white !important;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn_danger:hover {
+    background-color: var(--dangerHoverColor) !important;
+}
+
+.btn_warning {
+    background-color: var(--warningColor) !important;
+    color: white !important;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn_warning:hover {
+    background-color: var(--warningHoverColor) !important;
+}

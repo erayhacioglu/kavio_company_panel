@@ -1,18 +1,17 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
 import toast from "react-hot-toast";
-import { FaImage, FaPlus, FaTrash } from "react-icons/fa6";
+import { Image,Plus,Trash2 } from 'lucide-react';
 import { useParams } from "react-router";
-import Swal from "sweetalert2";
 import { linkData } from "../../helpers";
+import Axios from "../../services/Axios";
+import PageLoader from "../../components/PageLoader";
 
 const Profile = () => {
   const { id } = useParams();
 
   const [profileLoading, setProfileLoading] = useState(false);
   const [profileUpdateLoading, setProfileUpdateLoading] = useState(false);
-  const [isSwalOpen, setIsSwalOpen] = useState(false);
 
   const [profileImg, setProfileImg] = useState("");
   const [profileImgLoading, setProfileImgLoading] = useState(false);
@@ -43,8 +42,8 @@ const Profile = () => {
     if (!id) return;
     setProfileUpdateLoading(true);
     try {
-      const res = await axios.post(
-        `https://api.kavio.co/api/profile-management/update-personel-information`,
+      const res = await Axios.post(
+        `/profile-management/update-personel-information`,
         profileData
       );
       if (res?.status === 200) {
@@ -62,8 +61,8 @@ const Profile = () => {
     if (!id) return;
     setProfileLoading(true);
     try {
-      const res = await axios.get(
-        `https://api.kavio.co/api/profile-management/get-profile/${id}`
+      const res = await Axios.get(
+        `/profile-management/get-profile/${id}`
       );
       if (res?.status === 200) {
         setProfileData(res?.data);
@@ -79,9 +78,8 @@ const Profile = () => {
     if (!id) return;
     setProfileImgLoading(true);
     try {
-      const res = await axios.get(
-        `
-https://api.kavio.co/api/card/user-images/${id}`
+      const res = await Axios.get(
+        `/card/user-images/${id}`
       );
       if (res?.status === 200) {
         setProfileImg(res?.data?.profileImg);
@@ -107,8 +105,8 @@ https://api.kavio.co/api/card/user-images/${id}`
       const formData = new FormData();
       formData.append("userId", id);
       formData.append("img", profileImg);
-      const res = await axios.post(
-        "https://api.kavio.co/api/user/update-profile-img",
+      const res = await Axios.post(
+        "/user/update-profile-img",
         formData
       );
       if (res?.status === 200) {
@@ -233,27 +231,10 @@ https://api.kavio.co/api/card/user-images/${id}`
     profileUpdateLoading ||
     profileImgLoading ||
     updateProfileImgLoading;
-  useEffect(() => {
-    if (generalLoading && !isSwalOpen) {
-      setIsSwalOpen(true);
-      Swal.fire({
-        html: `
-<div style="display: flex; flex-direction: column; align-items: center;">
- <strong>Yükleniyor...</strong>
-<p>Lütfen bekleyin</p>
- </div> `,
-        allowOutsideClick: false,
-        showConfirmButton: false,
-        didOpen: () => {
-          Swal.showLoading();
-        },
-      });
+  
+    if(generalLoading){
+      return <PageLoader />
     }
-    if (!generalLoading && isSwalOpen) {
-      setIsSwalOpen(false);
-      Swal.close();
-    }
-  }, [isSwalOpen, generalLoading]);
 
   return (
     <div className="row my-4">
@@ -274,7 +255,7 @@ https://api.kavio.co/api/card/user-images/${id}`
               <div className="col-md-3 d-flex align-items-center justify-content-center">
                 <div className="custom_card_avatar">
                   <label htmlFor="avatar" className="custom_card_avatar_upload">
-                    <FaImage />
+                    <Image />
                   </label>
                   <input
                     type="file"
@@ -341,7 +322,7 @@ https://api.kavio.co/api/card/user-images/${id}`
                     key={idx}
                   >
                     {item?.value}&nbsp;
-                    <FaPlus />
+                    <Plus size={18}/>
                   </div>
                 ))}
             </div>
@@ -363,7 +344,7 @@ https://api.kavio.co/api/card/user-images/${id}`
                       className="form_delete_button"
                       onClick={() => removeContactInfo(idx)}
                     >
-                      <FaTrash />
+                      <Trash2 size={18}/>
                     </button>
                   </div>
                 </div>
@@ -380,7 +361,7 @@ https://api.kavio.co/api/card/user-images/${id}`
             <div className="add_form_item_container">
               <div className="add_form_item" onClick={addLink}>
                 Link&nbsp;
-                <FaPlus />
+                <Plus size={18}/>
               </div>
             </div>
             {profileData?.links?.length > 0 &&
@@ -399,7 +380,7 @@ https://api.kavio.co/api/card/user-images/${id}`
                       className="form_delete_button"
                       onClick={() => removeLink(idx)}
                     >
-                      <FaTrash />
+                      <Trash2 size={18}/>
                     </button>
                   </div>
                 </div>
@@ -414,7 +395,7 @@ https://api.kavio.co/api/card/user-images/${id}`
           handleUpdateProfileImg();
         }}
       >
-        <button className="btn btn-primary">Kaydet</button>
+        <button className="btn btn_primary">Kaydet</button>
       </div>
     </div>
   );

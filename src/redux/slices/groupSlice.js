@@ -4,7 +4,7 @@ import { generateMessage } from "../../helpers";
 
 export const addGroup = createAsyncThunk(
   "[POST]/user-groups",
-  async ({name,companyId = "1"}, thunkAPI) => {
+  async ({name,companyId}, thunkAPI) => {
     try {
       const res = await Axios.post(`/user-groups`,{
         name,
@@ -21,7 +21,7 @@ export const addGroup = createAsyncThunk(
 
 export const updateGroup = createAsyncThunk(
   "[PUT]/user-groups/${id}",
-  async ({name,id,companyId = "1"}, thunkAPI) => {
+  async ({name,id,companyId}, thunkAPI) => {
     try {
       const res = await Axios.put(`/user-groups/${id}`,{
         name,

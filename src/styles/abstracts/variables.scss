@@ -1,27 +1,45 @@
 /*Variables*/
 
-:root{
-    --background:#FFFFFF;
-    --secondBackground:#FFFFFF;
-    --secondBackgroundHover:#F5F5F5;
-    --sidebarBackground:#F9F9F9;
-    --sidebarHover:#EFEFEF;
-    --textColor:#0D0D0D;
-    --subTextColor:#8F8F8F;
-    --sidebarBorderColor:#EDEDED;
-    --headerBorderColor:#FAFAFA;
-    --borderColor:#D5D5D5;
+:root {
+  --background: #ffffff;
+  --secondBackground: #ffffff;
+  --secondBackgroundHover: #f5f5f5;
+  --sidebarBackground: #f9f9f9;
+  --sidebarHover: #efefef;
+  --textColor: #0d0d0d;
+  --subTextColor: #8f8f8f;
+  --sidebarBorderColor: #ededed;
+  --headerBorderColor: #fafafa;
+  --borderColor: #d5d5d5;
+
+  --primaryColor: #4c80a8;
+  --primaryHoverColor: #416f91;
+  --successColor: #5b9a78;
+  --successHoverColor: #4c8467;
+  --warningColor: #b49b52;
+  --warningHoverColor: #9e8848;
+  --dangerColor: #a15c5c;
+  --dangerHoverColor: #8f4f4f;
 }
 
-html.dark{
-    --background:#212121;
-    --secondBackground:#303030;
-    --secondBackgroundHover:#212121;
-    --sidebarBackground:#181818;
-    --sidebarHover:#303030;
-    --textColor:#FFFFFF;
-    --subTextColor:#AFAFAF;
-    --sidebarBorderColor:#212121;
-    --headerBorderColor:#282828;
-    --borderColor:#3C3C3C;
+html.dark {
+  --background: #212121;
+  --secondBackground: #303030;
+  --secondBackgroundHover: #212121;
+  --sidebarBackground: #181818;
+  --sidebarHover: #303030;
+  --textColor: #ffffff;
+  --subTextColor: #afafaf;
+  --sidebarBorderColor: #212121;
+  --headerBorderColor: #282828;
+  --borderColor: #3c3c3c;
+
+  --primaryColor: #5a96c0;
+  --primaryHoverColor: #4f87aa;
+  --successColor: #6bb88f;
+  --successHoverColor: #5ca77f;
+  --warningColor: #c4ad66;
+  --warningHoverColor: #ad9858;
+  --dangerColor: #bf6e6e;
+  --dangerHoverColor: #a75e5e;
 }

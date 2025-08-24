@@ -13,6 +13,7 @@ const GroupManagement = () => {
   const [groupModalShow, setGroupModalShow] = useState(false);
   const [updatedData, setUpdatedData] = useState(false);
   const [refresh, setRefresh] = useState(false);
+  const {user} = useSelector(state => state?.user);
 
   const dispatch = useDispatch();
   const { isLoading, isSuccess, isError, message } = useSelector(
@@ -56,13 +57,13 @@ const GroupManagement = () => {
       cell: ({ row }) => (
         <div className="btn_groups">
           <button
-            className="btn btn-sm btn_center btn-success"
+            className="btn btn-sm btn_center btn_success"
             onClick={() => handleUpdateGroup(row?.original)}
           >
             <FaEdit />
           </button>
           <button
-            className="btn btn-sm btn_center btn-danger"
+            className="btn btn-sm btn_center btn_danger"
             onClick={() => handleDeleteGroup(row?.original?.id)}
           >
             <FaTrash />
@@ -115,16 +116,16 @@ const GroupManagement = () => {
           <div className="col-md-12">
             <Table
               columns={columns}
-              endpoint="/user-groups/company/1"
+              endpoint={`/user-groups/company/${user?.company?.id}`}
               paramsMapper={(params) => ({
                 page: params.page,
                 size: params.size,
                 keyword: params.keyword,
-              })}
+              })} 
               headerButtons={
                 <>
                   <button
-                    className="btn btn-sm btn-primary d-flex align-items-center"
+                    className="btn btn-sm btn_primary d-flex align-items-center"
                     onClick={() => setGroupModalShow(true)}
                   >
                     <FaPlusCircle />

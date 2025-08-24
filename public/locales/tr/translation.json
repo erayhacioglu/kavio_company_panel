@@ -4,6 +4,10 @@
     "turkishButtonText": "Türkçe",
     "englishButtonText": "İngilizce"
   },
+  "customSelect":{
+    "placeholder":"Seçiniz",
+    "noOptionsMessage":"Sonuç Yok"
+  },
   "auth": {
     "login": {
       "metaTitle": "Giriş",

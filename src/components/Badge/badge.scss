@@ -1,0 +1,69 @@
+/* ---------- Tema Değişkenleri (Light) ---------- */
+:root {
+  --ui-badge-red-soft-bg:#ffe5e9;    --ui-badge-red-soft-fg:#e11d48;
+  --ui-badge-yellow-soft-bg:#fff7da; --ui-badge-yellow-soft-fg:#a16207;
+  --ui-badge-green-soft-bg:#e6ffef;  --ui-badge-green-soft-fg:#15803d;
+  --ui-badge-blue-soft-bg:#e6f0ff;   --ui-badge-blue-soft-fg:#1d4ed8;
+
+  --ui-badge-red-solid-bg:#e11d48;
+  --ui-badge-yellow-solid-bg:#f59e0b;
+  --ui-badge-green-solid-bg:#16a34a;
+  --ui-badge-blue-solid-bg:#2563eb;
+  --ui-badge-solid-fg:#ffffff;
+}
+
+/* ---------- Dark ---------- */
+html.dark {
+  --ui-badge-red-soft-bg:#441725;    --ui-badge-red-soft-fg:#fb7185;
+  --ui-badge-yellow-soft-bg:#3f3212; --ui-badge-yellow-soft-fg:#facc15;
+  --ui-badge-green-soft-bg:#142b20;  --ui-badge-green-soft-fg:#34d399;
+  --ui-badge-blue-soft-bg:#131b36;   --ui-badge-blue-soft-fg:#60a5fa;
+}
+
+/* ---------- Taban ---------- */
+.ui-badge {
+  display:inline-flex; align-items:center; justify-content:center;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  font-weight:700; letter-spacing:.2px; white-space:nowrap; user-select:none;
+  transition: background-color .2s ease, color .2s ease, transform .1s ease;
+  box-shadow:0 1px 0 rgba(0,0,0,.05);
+  line-height:1; /* circle için önemli */
+}
+
+/* Boyutlar */
+.ui-badge--xs { height:22px; padding:0 8px;   font-size:.7rem; }
+.ui-badge--sm { height:26px; padding:0 10px;  font-size:.8rem; }
+.ui-badge--md { height:32px; padding:0 14px;  font-size:.9rem; }
+.ui-badge--lg { height:38px; padding:0 18px;  font-size:1rem; }
+.ui-badge--xl { height:46px; padding:0 22px;  font-size:1.1rem; }
+
+/* Şekiller */
+.ui-badge--pill    { border-radius:9999px; }
+.ui-badge--rounded { border-radius:12px; }
+.ui-badge--circle  { 
+  border-radius:9999px; 
+  width:auto; padding:0;
+  aspect-ratio:1/1;
+  min-width: var(--_ui-badge-diam, 32px);
+}
+/* Circle çapları */
+.ui-badge--circle.ui-badge--xs { --_ui-badge-diam:22px; }
+.ui-badge--circle.ui-badge--sm { --_ui-badge-diam:26px; }
+.ui-badge--circle.ui-badge--md { --_ui-badge-diam:32px; }
+.ui-badge--circle.ui-badge--lg { --_ui-badge-diam:38px; }
+.ui-badge--circle.ui-badge--xl { --_ui-badge-diam:46px; }
+
+/* Variant: SOFT */
+.ui-badge--soft.ui-badge--danger { background:var(--ui-badge-red-soft-bg);    color:var(--ui-badge-red-soft-fg); }
+.ui-badge--soft.ui-badge--warning    { background:var(--ui-badge-yellow-soft-bg); color:var(--ui-badge-yellow-soft-fg); }
+.ui-badge--soft.ui-badge--success   { background:var(--ui-badge-green-soft-bg);  color:var(--ui-badge-green-soft-fg); }
+.ui-badge--soft.ui-badge--primary    { background:var(--ui-badge-blue-soft-bg);   color:var(--ui-badge-blue-soft-fg); }
+
+/* Variant: SOLID */
+.ui-badge--solid.ui-badge--danger { background:var(--ui-badge-red-solid-bg);   color:var(--ui-badge-solid-fg); }
+.ui-badge--solid.ui-badge--warning    { background:var(--ui-badge-yellow-solid-bg);color:var(--ui-badge-solid-fg); }
+.ui-badge--solid.ui-badge--success   { background:var(--ui-badge-green-solid-bg); color:var(--ui-badge-solid-fg); }
+.ui-badge--solid.ui-badge--primary    { background:var(--ui-badge-blue-solid-bg);  color:var(--ui-badge-solid-fg); }
+
+.ui-badge:hover { filter:brightness(1.05); }
+.ui-badge:active{ transform:translateY(1px); }

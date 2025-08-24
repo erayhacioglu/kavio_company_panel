@@ -61,8 +61,6 @@ const Table = ({
 
         const res = await Axios.get(endpoint, { params });
 
-        console.log('res', res)
-
         const items = Array.isArray(res?.data?.content)
           ? res.data?.content
           : [];

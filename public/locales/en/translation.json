@@ -4,6 +4,10 @@
     "turkishButtonText": "Turkish",
     "englishButtonText": "English"
   },
+  "customSelect":{
+    "placeholder":"Select",
+    "noOptionsMessage":"No Options"
+  },
   "auth": {
     "login": {
       "metaTitle": "Sign In",

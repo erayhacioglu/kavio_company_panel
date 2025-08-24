@@ -1,12 +1,13 @@
 import {useEffect} from 'react'
 import { Modal, ModalBody, ModalFooter, ModalHeader } from 'react-bootstrap'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { addGroup,updateGroup } from '../../../redux/slices/groupSlice'
 import { useFormik } from 'formik'
 import validationSchema from "../validationSchema";
 
 const GroupModal = ({groupModalShow,setGroupModalShow,updatedData,setUpdatedData,setRefresh}) => {
   const dispatch = useDispatch();
+  const {user} = useSelector(state => state.user);
 
   const {handleBlur,handleSubmit,handleChange,values,errors,touched,setFieldValue,resetForm} = useFormik({
     initialValues:{
@@ -40,7 +41,7 @@ const GroupModal = ({groupModalShow,setGroupModalShow,updatedData,setUpdatedData
           }
         })
       }else{
-        dispatch(addGroup({name:values?.name})).then((dispatchRes) => {
+        dispatch(addGroup({name:values?.name,companyId:user?.company?.id})).then((dispatchRes) => {
           if(dispatchRes?.meta?.requestStatus === "fulfilled"){
             completedHandleSubmit();
           }
@@ -71,8 +72,8 @@ const GroupModal = ({groupModalShow,setGroupModalShow,updatedData,setUpdatedData
         </ModalBody>
         <ModalFooter>
           <div className='modal_footer_button_groups'>
-            <button className='btn btn-sm btn-danger'>İptal</button>
-            <button className='btn btn-sm btn-primary' onClick={handleSubmit}>{updatedData ? "Güncelle":"Kaydet"}</button>
+            <button className='btn btn-sm btn_danger'>İptal</button>
+            <button className='btn btn-sm btn_primary' onClick={handleSubmit}>{updatedData ? "Güncelle":"Kaydet"}</button>
           </div>
         </ModalFooter>
     </Modal>
