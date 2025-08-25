@@ -1,0 +1,17 @@
+/*Social Media*/
+
+.social_media_list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  .social_media_item {
+    border-radius: 4px;
+    padding: 5px 15px;
+    border: 1px solid var(--borderColor);
+    color: var(--textColor);
+    cursor: pointer;
+    &.active {
+      background: var(--sidebarBorderColor);
+    }
+  }
+}

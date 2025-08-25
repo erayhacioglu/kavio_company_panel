@@ -36,9 +36,6 @@ const BankInfo = ({ data, setData }) => {
       <div className="custom_card">
         <div className="custom_card_header">
           <span>Banka Bilgileri</span>
-          <div className="custom_card_header_groups">
-            <Form.Check type="switch" id="custom-switch" label="Düzenlensin" />
-          </div>
         </div>
         <div className="custom_card_body">
           <div className="row">

@@ -37,9 +37,6 @@ const CompanyInfo = ({ data, setData }) => {
       <div className="custom_card">
         <div className="custom_card_header">
           <span>Şirket Bilgileri</span>
-          <div className="custom_card_header_groups">
-            <Form.Check type="switch" id="custom-switch" label="Düzenlensin" />
-          </div>
         </div>
         <div className="custom_card_body">
           <div className="row">
