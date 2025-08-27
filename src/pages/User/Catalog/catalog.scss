@@ -1,0 +1,100 @@
+/*Catalog*/
+
+.catalog_added_container{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 25px;
+    .catalog_add_button{
+        border: 1px solid var(--subTextColor);
+        height: 300px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        background: var(--background);
+        cursor: pointer;
+        .catalog_add_button_body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .catalog_added_icon{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                font-size: 16px;
+                font-weight: 500;
+                color: var(--subTextColor);
+                .catalog_added_icon_circle{
+                    width:75px;
+                    height: 75px;
+                    border: 1px solid var(--subTextColor);
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: var(--subTextColor);
+                    margin-bottom: 10px;
+                }
+            }
+            .selected_added_item{
+                display: none;
+            }
+        }
+    }
+}
+
+.catalog_card_container{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 25px;
+    .catalog_card{
+        width:100%;
+        border-radius: 8px;
+        height:350px;
+        overflow: hidden;
+        border: 1px solid red;
+        .catalog_card_title{
+            width: 100px;
+            background: black;
+        }
+    }
+}
+.catalog_card_preview{
+    width:100%;
+    border-radius: 8px;
+    height:100%;
+    overflow: hidden;
+    border: 1px solid red;
+    .catalog_card_preview_thumbnail{
+        height: calc(100% - 85px);
+        .catalog_card_preview_img{
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .catalog_card_preview_title{
+        height: 85px;
+        background: var(--subTextColor);
+        color: var(--textColor);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+@media only screen and (max-width:992px){
+    .catalog_added_container{
+        grid-template-columns: repeat(1,1fr);
+        .catalog_add_button{
+            height: 75px;
+            .catalog_add_button_body{
+                .catalog_added_icon{
+                    .catalog_added_icon_circle{
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}
