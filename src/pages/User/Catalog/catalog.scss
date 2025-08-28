@@ -1,100 +1,163 @@
 /*Catalog*/
 
-.catalog_added_container{
-    display: grid;
-    grid-template-columns: repeat(2,1fr);
-    gap: 25px;
-    .catalog_add_button{
-        border: 1px solid var(--subTextColor);
-        height: 300px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 8px;
-        background: var(--background);
-        cursor: pointer;
-        .catalog_add_button_body{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            .catalog_added_icon{
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                font-size: 16px;
-                font-weight: 500;
-                color: var(--subTextColor);
-                .catalog_added_icon_circle{
-                    width:75px;
-                    height: 75px;
-                    border: 1px solid var(--subTextColor);
-                    border-radius: 50%;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    color: var(--subTextColor);
-                    margin-bottom: 10px;
-                }
-            }
-            .selected_added_item{
-                display: none;
-            }
-        }
-    }
-}
-
-.catalog_card_container{
-    display: grid;
-    grid-template-columns: repeat(4,1fr);
-    gap: 25px;
-    .catalog_card{
-        width:100%;
-        border-radius: 8px;
-        height:350px;
-        overflow: hidden;
-        border: 1px solid red;
-        .catalog_card_title{
-            width: 100px;
-            background: black;
-        }
-    }
-}
-.catalog_card_preview{
-    width:100%;
+.catalog_added_container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+  .catalog_add_button {
+    border: 1px solid var(--subTextColor);
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 8px;
-    height:100%;
-    overflow: hidden;
-    border: 1px solid red;
-    .catalog_card_preview_thumbnail{
-        height: calc(100% - 85px);
-        .catalog_card_preview_img{
-            width: 100%;
-            height: 100%;
+    background: var(--background);
+    cursor: pointer;
+    .catalog_add_button_body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .catalog_added_icon {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        font-weight: 500;
+        color: var(--subTextColor);
+        .catalog_added_icon_circle {
+          width: 75px;
+          height: 75px;
+          border: 1px solid var(--subTextColor);
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: var(--subTextColor);
+          margin-bottom: 10px;
         }
+      }
+      .selected_added_item {
+        display: none;
+      }
     }
-    .catalog_card_preview_title{
-        height: 85px;
-        background: var(--subTextColor);
-        color: var(--textColor);
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .catalog_added_container {
+    grid-template-columns: repeat(1, 1fr);
+    .catalog_add_button {
+      height: 75px;
+      .catalog_add_button_body {
+        .catalog_added_icon {
+          .catalog_added_icon_circle {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+.catalog_card_container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+  .catalog_card {
+    width: 100%;
+    border-radius: 8px;
+    height: 380px;
+    overflow: hidden;
+    border: 1px solid var(--borderColor);
+    .catalog_card_thumbnail {
+      height: calc(100% - 125px);
+      .catalog_card_img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .catalog_card_title {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 75px;
+      background: var(--subTextColor);
+      color: var(--background);
+      text-align: center;
+      padding: 10px;
+    }
+    .title_text {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+    }
+    .catalog_card_btn_groups {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 10px;
+      height: 50px;
+      .catalog_card_btn {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        border: 1px solid var(--subTextColor);
         display: flex;
         align-items: center;
         justify-content: center;
+        &.delete {
+          color: crimson;
+        }
+        &.edit {
+          color: green;
+        }
+      }
     }
+  }
 }
 
-@media only screen and (max-width:992px){
-    .catalog_added_container{
-        grid-template-columns: repeat(1,1fr);
-        .catalog_add_button{
-            height: 75px;
-            .catalog_add_button_body{
-                .catalog_added_icon{
-                    .catalog_added_icon_circle{
-                        display: none;
-                    }
-                }
-            }
-        }
+.catalog_card_preview {
+  width: 100%;
+  border-radius: 8px;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid var(--borderColor);
+  .catalog_card_preview_thumbnail {
+    height: calc(100% - 75px);
+    .catalog_card_preview_img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
     }
+  }
+  .catalog_card_preview_title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 75px;
+    background: var(--subTextColor);
+    color: var(--background);
+    text-align: center;
+    padding: 10px;
+  }
+  .preview_title_text {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .catalog_card_container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .catalog_card_container {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }

@@ -1,7 +1,6 @@
-import React from 'react'
 import { Plus } from "lucide-react";
 
-const CatalogForm = () => {
+const CatalogForm = (catalogFormData,setCatalogFormData) => {
   return (
     <div className="col-md-12">
         <div className="custom_card">
@@ -13,7 +12,7 @@ const CatalogForm = () => {
               <div className="col-lg-8 col-md-12">
                 <div className="form_group">
                   <label className="form_label">Başlık</label>
-                  <input type="text" className="form_control" />
+                  <input type="text" className="form_control" value={catalogFormData?.name} onChange={(e) => setCatalogFormData((prev) => ({...prev,name:e.target.value}))}/>
                 </div>
                 <div className="catalog_added_container">
                   <label htmlFor="thumbnail" className="catalog_add_button">
@@ -44,11 +43,13 @@ const CatalogForm = () => {
               </div>
               <div className="col-lg-4 col-md-12">
                 <div className="catalog_card_preview">
-                    <div className="catalog_card_preview_thumbnail">
-                        <img src="" alt="" className='catalog_card_preview_img'/>
-                    </div>
-                    <div className='catalog_card_preview_title'>Title</div>
-                </div>
+            <div className="catalog_card_preview_thumbnail">
+              <img src={catalogFormData?.coverPhoto ?? "https://t3.ftcdn.net/jpg/04/61/12/02/360_F_461120287_u67OuAngOw2tMMAB3kSkW2uqCZnMmIwY.jpg"} alt="" className="catalog_card_preview_img"/>
+            </div>
+            <div className="catalog_card_preview_title">
+              <div className="preview_title_text">Title</div>
+            </div>
+          </div>
               </div>
             </div>
             <div className="d-flex align-items-center justify-content-end mt-4">
