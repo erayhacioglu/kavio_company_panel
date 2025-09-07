@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
 import BreadCrumb from "../../components/BreadCrumb";
 import Table from "../../components/Table";
-import { FaCheck, FaEdit, FaLink, FaTimes } from "react-icons/fa";
-import { FaArrowRotateLeft, FaEye,FaLayerGroup } from "react-icons/fa6";
 import { Link } from "react-router";
 import { cardStatus } from "../../enums";
 import Badge from "../../components/Badge";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import GroupModal from "./GroupModal";
+import { Check,Eye,Layers,SquarePen,X ,RotateCcw, Link2} from "lucide-react";
+import PageLoader from "../../components/PageLoader";
+import Axios from "../../services/Axios";
 
 const CardManagement = () => {
   const [refresh, setRefresh] = useState(false);
@@ -19,6 +20,8 @@ const CardManagement = () => {
 
   const [groupModalShow,setGroupModalShow] = useState(false);
   const [selectedLine,setSelectedLine] = useState(false);
+
+  const [cardResetLoading,setCardResetLoading] = useState(false);
 
   useEffect(() => {
   if (copiedUniqueCode?.id) {
@@ -40,7 +43,7 @@ const handleCopy = (id, code) => {
     });
 };
 
-const handleCardReset = async () => {
+const handleCardReset = async (row) => {
   try {
     Swal.fire({
   title: "Kart Sıfırlama",
@@ -52,10 +55,17 @@ const handleCardReset = async () => {
   reverseButtons: true
 }).then((result) => {
   if (result.isConfirmed) {
-    toast.success("Kart sıfırlama işlemi başarıyla tamamlandı");
+    Axios.get(`/user/profile-reset/${row?.id}`).then(res => {
+      if(res?.status === 200){
+        toast.success("Kart sıfırlama işlemi başarıyla tamamlandı");
+        setRefresh(true);
+      }
+    }).catch((error) => {
+      const msg = error?.response?.data?.message || "Kart sıfırlama sırasında bir hata oluştu"
+      toast.error(msg);
+    }).finally(() => setCardResetLoading(false))
   } 
 });
-
   } catch (error) {
     console.log("Error : ",error);
   }
@@ -92,15 +102,15 @@ const handleCardReset = async () => {
     header: "uniqueCode",
     cell: ({ row }) => (
       <button
-        className="table_copy_item"
+        className="table_copy_item text-success"
         onClick={() =>
           handleCopy(row?.original?.id, row?.original?.uniqueCode)
         }
       >
         {copiedUniqueCode?.id === row?.original?.id ? (
-          <FaCheck className="text-success" />
+          <Check className="text-success" size={18}/>
         ) : (
-          <FaLink />
+          <Link2 size={18}/>
         )}
         &nbsp;{row?.original?.uniqueCode}
       </button>
@@ -110,6 +120,15 @@ const handleCardReset = async () => {
     accessorKey:"companyName",
     header:"Şirket",
     cell:({row}) => row?.original?.companyName ?? "-" 
+  },
+  {
+    accessorKey:"userGroups",
+    header:"Gruplar",
+    cell:({row}) => (
+      <>
+        {row?.original?.card?.userGroups?.length > 0 ? row?.original?.card?.userGroups?.map(el => el?.name)?.join(", "):"-"}
+      </>
+    )
   },
   {
     accessorKey:"role",
@@ -124,18 +143,28 @@ const handleCardReset = async () => {
   {
     accessorKey:"isBanned",
     header:"Ban Durumu",
+    // cell:({row}) => (
+    //   <>
+    //     <Badge color={row?.original?.isBanned ? "success":"danger"} shape="circle">{row?.original?.isBanned ? <Check /> : <X/>}</Badge>
+    //   </>
+    // )
     cell:({row}) => (
       <>
-        <Badge color={row?.original?.isBanned ? "success":"danger"} shape="circle">{row?.original?.isBanned ? <FaCheck /> : <FaTimes/>}</Badge>
+        {!row?.original?.isBanned ? "-":<Badge color={row?.original?.isBanned && "success"} shape="circle">{row?.original?.isBanned && <Check />}</Badge>}
       </>
     )
   },
   {
     accessorKey:"verifed",
     header:"Doğrulama Durumu",
+    // cell:({row}) => (
+    //   <>
+    //     <Badge color={row?.original?.verified ? "success":"danger"} shape="circle">{row?.original?.verified ? <Check /> : <X/>}</Badge>
+    //   </>
+    // )
     cell:({row}) => (
       <>
-        <Badge color={row?.original?.verified ? "success":"danger"} shape="circle">{row?.original?.verified ? <FaCheck /> : <FaTimes/>}</Badge>
+        {!row?.original?.verified ? "-":<Badge color={row?.original?.verified && "success"} shape="circle">{row?.original?.verified && <Check /> }</Badge>}
       </>
     )
   },
@@ -153,17 +182,23 @@ const handleCardReset = async () => {
       header:"",
       cell:({row}) => (
         <div className="btn_groups">
-          <Link to={`/user/${row?.original?.cardId}/profile`} className="btn btn-sm btn_center btn_success text-white"><FaEye /></Link>
-          <Link to={`/user-update/${row?.original?.cardId}/profile`} className="btn btn-sm btn_center btn_primary text-white"><FaEdit /></Link>
+          <Link to={`/user/${row?.original?.cardId}/profile`} className="btn btn-sm btn_center btn_success text-white"><Eye size={16}/></Link>
+          <Link to={`/user-update/${row?.original?.cardId}/profile`} className="btn btn-sm btn_center btn_primary text-white"><SquarePen size={16}/></Link>
           <button className="btn btn-sm btn_center btn_warning text-white" onClick={() => {
             setGroupModalShow(true)
             setSelectedLine(row?.original);
-          }}><FaLayerGroup /></button>
-          <button className="btn btn-sm btn_center btn_danger text-white" onClick={() => handleCardReset(row?.original)}><FaArrowRotateLeft /></button>
+          }}><Layers size={16} /></button>
+          <button className="btn btn-sm btn_center btn_danger text-white" onClick={() => handleCardReset(row?.original)}><RotateCcw size={16}/></button>
         </div>
       )
     }
   ];
+
+  const generalLoading = cardResetLoading;
+
+  if(generalLoading){
+    return <PageLoader />
+  }
 
   return (
     <>

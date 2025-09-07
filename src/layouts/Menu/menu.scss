@@ -1,5 +1,4 @@
 /*Menu*/
-
 .menu {
   padding: 0 5px;
 
@@ -7,11 +6,6 @@
     border-radius: 10px;
     overflow: hidden;
     margin-bottom: 5px;
-
-    &.open,
-    &:hover {
-      background: var(--sidebarHover);
-    }
 
     .menu-btn {
       display: flex;
@@ -26,27 +20,38 @@
       transition: 0.3s;
       cursor: pointer;
 
-      p{
+      p {
         padding: 0;
         margin: 0;
       }
-
-      &:hover {
-        background: var(--sidebarHover);
-      }
-
-      span{
+      span {
         display: flex;
         align-items: center;
         justify-content: center;
       }
-
-    //   span:first-child {
-    //     color: var(--subTextColor);
-    //   }
-
       span:last-child {
         margin-left: auto;
+
+        /* İkon animasyonu */
+        display: flex;
+        transition: transform 0.3s ease;
+      }
+
+      /* Hover = Active görünümü */
+      &:hover,
+      &.active {
+        background: var(--sidebarHover);
+        color: var(--textColor);
+      }
+    }
+
+    /* Dropdown açıkken başlık butonu ve ikon rotasyonu */
+    &.open > .menu-btn {
+      background: var(--sidebarHover);
+      color: var(--textColor);
+
+      span:last-child {
+        transform: rotate(180deg); /* + ikonunu 180° çevir */
       }
     }
 
@@ -62,11 +67,11 @@
       li {
         list-style: none;
 
-        span{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
+        span {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
 
         .menu-sub-btn {
           display: flex;
@@ -81,15 +86,16 @@
           transition: 0.3s;
           cursor: pointer;
 
-          &:hover {
+          &:hover,
+          &.active {
             color: var(--textColor);
+            background: var(--sidebarHover);
           }
         }
       }
     }
   }
 }
-
 
 .menu-title {
   padding: 8px 16px;
@@ -105,7 +111,8 @@
   overflow: hidden;
   margin-bottom: 5px;
 
-  button.menu-btn {
+  button.menu-btn,
+  .menu-btn {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -122,20 +129,19 @@
       margin: 0;
       padding: 0;
     }
-
-    span{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
+    span {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
     span:last-child {
       margin-left: auto;
     }
 
-    &:hover {
+    &:hover,
+    &.active {
       background: var(--sidebarHover);
+      color: var(--textColor);
     }
   }
 }
-

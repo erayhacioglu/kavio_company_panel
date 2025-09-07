@@ -1,0 +1,83 @@
+/*Permissions*/
+
+.permission_card {
+  border-radius: 20px;
+  border: 1px solid var(--borderColor);
+  overflow: hidden;
+  background-color: var(--secondBackground);
+  padding: 0 !important;
+  margin-top: 25px;
+  max-width: 800px;
+
+  .permission_card_item {
+    width: 100%;
+    min-height: 80px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border-bottom: 1px solid var(--borderColor);
+    &:last-child {
+      border-bottom: none;
+    }
+    .permission_card_icon {
+      --w: 50px;
+      width: var(--w);
+      aspect-ratio: calc(2 / 1.7320508075688772);
+      background: var(--sidebarHover);
+      color: var(--textColor);
+      display: grid;
+      place-items: center;
+      font: 600 14px/1.2 system-ui, sans-serif;
+
+      /* 1) Fallback: tüm tarayıcılarda altıgen */
+      clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%);
+    }
+
+    /* 2) Destek varsa: yuvarlatılmış altıgen (tek satır!) */
+    @supports (clip-path: path("M 0 0 L 1 0")) {
+      .permission_card_icon {
+        clip-path: path(
+          "M 27% 0 H 73% Q 86% 0 93% 13% L 100% 50% Q 100% 63% 93% 87% L 73% 100% H 27% Q 14% 100% 7% 87% L 0 50% Q 0 37% 7% 13% L 27% 0 Z"
+        );
+      }
+    }
+
+    .permission_card_content {
+      flex: 1;
+      .permission_card_title {
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--textColor);
+        padding: 0;
+        margin: 0;
+      }
+      .permission_card_text {
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--subTextColor);
+        padding: 0;
+        margin: 0;
+      }
+    }
+    .permission_card_action {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      .switch {
+        --trackOn: var(--primaryColor);
+        --trackOnHover: var(--primaryHoverColor);
+        --thumb: #fff;
+        --focusRing: color-mix(in srgb, var(--primaryColor) 35%, transparent);
+      }
+    }
+  }
+}
+
+
+html.dark .permission_card .permission_card_item .permission_card_icon {
+  background: var(--background); 
+}
+html.dark .permission_card .permission_card_item .permission_card_action .switch {
+  --trackOff: var(--secondBackgroundHover);
+}

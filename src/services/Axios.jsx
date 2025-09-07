@@ -32,8 +32,8 @@ instance.interceptors.request.use(async function (config) {
           // window.location = "/auth/login";
         }
         if (error.response.status === 403) {
-          localStorage.clear();
-          window.location = "/auth/login";
+          // localStorage.clear();
+          // window.location = "/auth/login";
         }
       }
 

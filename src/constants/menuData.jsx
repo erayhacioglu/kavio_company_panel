@@ -1,75 +1,58 @@
-import {
-  FaBook,
-  FaBuilding,
-  FaChartColumn,
-  FaClock,
-  FaEye,
-  FaGear,
-  FaIdCard,
-  FaLink,
-  FaList,
-  FaLocationDot,
-  FaPalette,
-  FaPhone,
-  FaPlus,
-  FaQrcode,
-  FaQuestion,
-  FaShieldHalved,
-  FaTag,
-  FaUserClock,
-  FaUserGear,
-  FaUserGroup,
-  FaUserPlus,
-  FaUsers,
-  FaUsersGear,
-  FaWrench,
-  FaLayerGroup
-} from "react-icons/fa6";
-import {
-  FaHandsHelping,
-  FaHome
-} from "react-icons/fa";
+import {Bolt, House, Users,ChartColumn, Briefcase, CreditCard, IdCard} from "lucide-react"
 
 const menuData = [
   {
     type: "item",
     name: "Anasayfa",
-    icon: <FaHome />,
+    icon: <House size={20}/>,
     path: "/",
   },
   {
     type: "item",
-    name: "Grup Yönetimi",
-    icon: <FaLayerGroup />,
-    path: "/group-management",
+    name: "Card Yönetimi",
+    icon: <CreditCard size={20} />,
+    path: "/card-management",
   },
   {
     type: "item",
-    name: "Card Yönetimi",
-    icon: <FaIdCard />,
-    path: "/card-management",
+    name: "Gruplar",
+    icon: <Users size={20}/>,
+    path: "/group-management",
   },
-
+  {
+    type:"item",
+    name:"Şirket Profili",
+    icon:<Briefcase size={20}/>,
+    path:"/company-profile"
+  },
+  {
+    type:"item",
+    name:"Bağlantılar",
+    icon:<IdCard size={20}/>,
+    path:"/connections"
+  },
+  {
+    type:"item",
+    name:"Analiz",
+    icon:<ChartColumn size={20}/>,
+    path:"/analize"
+  },
+  {
+    type: "item",
+    name: "Ayarlar",
+    icon: <Bolt size={20}/>,
+    path: "/settings",
+  },
   // { type: "title", name: "Kart İşlemleri" },
-  {
-    type: "block",
-    name: "Firma Yönetimi",
-    icon: <FaBuilding />,
-    items: [
-      { name: "Şirket Bilgileri", icon: <FaPalette />, path: "/company-information" },
-      { name: "Marka Ayarları", icon: <FaTag />, path: "/" },
-      { name: "Sosyal Medya Linkleri", icon: <FaLink />, path: "/" },
-    ],
-  },
-  {
-    type: "block",
-    name: "Admin Yönetimi",
-    icon: <FaUsersGear />,
-    items: [
-      { name: "Admin Listesi", icon: <FaUsers />, path: "/admin-list" },
-      { name: "Yeni Admin Ekle", icon: <FaUserPlus />, path: "/admin-create" }
-    ],
-  },
+  // {
+  //   type: "block",
+  //   name: "Admin Yönetimi",
+  //   icon: <Bolt />,
+  //   items: [
+  //     { name: "Admin Listesi", icon: <Bolt />, path: "/a" },
+  //     { name: "Yeni Admin Ekle", icon: <Bolt />, path: "/" }
+  //   ],
+  // },
 ];
 
 export default menuData;

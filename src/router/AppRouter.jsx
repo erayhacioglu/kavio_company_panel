@@ -21,6 +21,7 @@ const CompanyInformation = lazy(() =>
 
 const UserDetailLayout = lazy(() => import("../layouts/UserLayout"));
 const UserLayout = lazy(() => import("../layouts/User"));
+const SettingsLayout = lazy(() => import("../layouts/SettingsLayout"));
 
 const UserProfile = lazy(() => import("../pages/UserDetail/UserProfile"));
 const UserStatistics = lazy(() => import("../pages/UserDetail/UserStatistics"));
@@ -29,6 +30,8 @@ const ProfilePage = lazy(() => import("../pages/User/Profile"));
 const SocialMediaPage = lazy(() => import("../pages/User/SocialMedia"));
 const CompanyPage = lazy(() => import("../pages/User/Company"));
 const CatalogPage = lazy(() => import("../pages/User/Catalog"));
+
+const PermissionsPage = lazy(() => import("../pages/Settings/Permissions"))
 
 const Login = lazy(() => import("../pages/Auth/Login"));
 const NotFound = lazy(() => import("../pages/ErrorPages/NotFound"));
@@ -65,6 +68,12 @@ export default function AppRouter() {
               <Route index element={<Navigate to="profile" replace />} />
               <Route path="profile" element={<UserProfile />} />
               <Route path="statistics" element={<UserStatistics />} />
+            </Route>
+
+            {/* Settings */}
+            <Route path="settings" element={<SettingsLayout />}>
+              <Route index element={<Navigate to="permissions" replace />} />
+              <Route path="permissions" element={<PermissionsPage />} />
             </Route>
 
             {/* User update */}

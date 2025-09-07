@@ -117,7 +117,7 @@ const Table = ({
 
   const totalPages = table.getPageCount();
 
-  const columnCount = useMemo(() => columns.length, [columns]);
+  const columnCount = useMemo(() => columns.length > 6 ? 6 : columns.length, [columns]);
 
   return (
     <div className="data-table-container">

@@ -3,7 +3,7 @@ import cn from "classnames";
 import Menu from "../Menu";
 import Logo from "../../assets/images/logo.svg";
 
-const Sidebar = ({sidebar}) => {
+const Sidebar = ({ sidebar }) => {
   return (
     <div
       className={cn({
@@ -12,7 +12,7 @@ const Sidebar = ({sidebar}) => {
       })}
     >
       <div className="sidebar_header">
-        <img src={Logo} alt="" className="sidebar_header_logo"/>
+        <img src={Logo} alt="Logo" className="sidebar_header_logo" />
       </div>
       <Menu />
     </div>

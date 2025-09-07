@@ -22,6 +22,5 @@ export const linkData = [
 ];
 
 export const generateMessage = (error,frontMessage) => {
-    console.log('error', error)
     return error?.response?.data?.message || `[${frontMessage}] Beklenmeyen Bir Hata Oluştu`
 }

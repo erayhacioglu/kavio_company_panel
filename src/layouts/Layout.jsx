@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Outlet } from "react-router";
+import { useEffect, useState } from "react";
+import { Outlet, useLocation } from "react-router";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
 import cn from "classnames";
@@ -7,7 +7,22 @@ import { useWindowSize } from "react-use";
 
 const Layout = () => {
   const { width } = useWindowSize();
-  const [sidebar, setSidebar] = useState(width <= 768 ? false : true);
+  const isMobile = width <= 768;
+  const location = useLocation();
+
+  const [sidebar, setSidebar] = useState(isMobile ? false : true);
+
+  useEffect(() => {
+    setSidebar(isMobile ? false : true);
+  }, [isMobile]);
+
+
+  useEffect(() => {
+    if (isMobile) {
+      setSidebar(false);
+    }
+  }, [location.pathname, isMobile]);
+
   return (
     <>
       <div

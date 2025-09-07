@@ -43,6 +43,8 @@ const GroupModal = ({
   console.log("errors", errors);
   console.log("values", values);
 
+  console.log('selectedLine', selectedLine?.card)
+
   const getRoles = async () => {
     setRolesLoading(true);
     try {
@@ -111,7 +113,7 @@ const GroupModal = ({
           />
         </div>
         <div className="form_group">
-          <label className="form_label">Rol</label>
+          <label className="form_label">Grup</label>
           <CustomSelect
             options={
               roles && roles?.length > 0
@@ -121,6 +123,7 @@ const GroupModal = ({
             onChange={(selected) =>
               setFieldValue("cardIds", [Number(selected?.value)])
             }
+            isMulti
           />
           {errors?.cardIds && (
             <div className="form_error">{errors?.cardIds}</div>
