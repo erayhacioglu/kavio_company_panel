@@ -16,7 +16,8 @@ const SwitchCheckbox = forwardRef(({ checked, onChange, label, disabled = false,
         aria-checked={!!checked}
         aria-label={label || "switch"}
         checked={!!checked}
-        onChange={(e) => onChange?.(e.target.checked)}
+        // onChange={(e) => onChange?.(e.target.checked)}
+        onChange={onChange}
         disabled={disabled}
         ref={ref}
       />
