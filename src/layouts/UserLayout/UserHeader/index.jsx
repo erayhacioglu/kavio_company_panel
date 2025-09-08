@@ -1,8 +1,9 @@
-import {Link,useLocation} from "react-router"
+import {Link,useLocation, useParams} from "react-router"
 import "./user_header.scss";
 
 const UserHeader = () => {
   const location = useLocation();
+  const {id} = useParams();
 
   const isActive = (path) => {
     return location.pathname === path
@@ -19,18 +20,18 @@ const UserHeader = () => {
             <h6 className="user_title">Frontend Developer</h6>
         </div>
         <div className="user_menu">
-        <Link to="/user/10/profile" className={isActive("/user/10/profile")}>
+        <Link to={`/user/${id}/profile`} className={isActive(`/user/${id}/profile`)}>
           Profil
         </Link>
         <Link
-          to="/user/10/connections"
-          className={isActive("/user/10/connections")}
+          to={`/user/${id}/connections`}
+          className={isActive(`/user/${id}/connections`)}
         >
           Bağlantılar
         </Link>
         <Link
-          to="/user/10/statistics"
-          className={isActive("/user/10/statistics")}
+          to={`/user/${id}/statistics`}
+          className={isActive(`/user/${id}/statistics`)}
         >
           İstatistik
         </Link>

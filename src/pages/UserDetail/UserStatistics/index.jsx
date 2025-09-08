@@ -1,7 +1,8 @@
-import axios from "axios";
+import axios from "../../../services/Axios";
 import { useEffect, useState } from "react";
 import TotalDoughnutChart from "./charts/TotalDoughnutChart";
 import MonthlyLineChart from "./charts/MonthlyLineChart";
+import { useParams } from "react-router";
 
 const UserStatistics = () => {
   const [monthlyData, setMonthlyData] = useState([]);
@@ -10,10 +11,14 @@ const UserStatistics = () => {
     totalDownloads: "",
   });
 
+
+  const {id} = useParams();
+  
+
   const getTotalData = async () => {
     try {
       const res = await axios.get(
-        "https://api.kavio.co/api/statistics/1/total"
+        `/statistics/${id}/total`
       );
       setTotalData({
         totalViews: res?.data?.totalViews,
@@ -27,7 +32,7 @@ const UserStatistics = () => {
   const getMonthlyData = async () => {
     try {
       const res = await axios.get(
-        "https://api.kavio.co/api/statistics/1/monthly"
+        `/statistics/${id}/monthly`
       );
       setMonthlyData(res?.data);
     } catch (error) {
