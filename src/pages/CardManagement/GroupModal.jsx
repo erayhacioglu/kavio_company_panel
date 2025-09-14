@@ -28,8 +28,13 @@ const GroupModal = ({
 
   const { values, errors, handleSubmit, setFieldValue } = useFormik({
     initialValues: {
-      groupId: "",
-      cardIds: [],
+      // her zaman array!
+      groupId: selectedLine?.userGroups?.map((g) => Number(g.id)) ?? [],
+      // bu modal tek kişiye çalışıyorsa card id’yi dizi halinde tut
+      cardIds: (() => {
+        const cid = selectedLine?.card?.id ?? selectedLine?.id;
+        return cid ? [Number(cid)] : [];
+      })(),
     },
     validationSchema,
     validateOnChange: false,
@@ -39,11 +44,6 @@ const GroupModal = ({
       handlePost(values);
     },
   });
-
-  console.log("errors", errors);
-  console.log("values", values);
-
-  console.log('selectedLine', selectedLine?.card)
 
   const getRoles = async () => {
     setRolesLoading(true);
@@ -62,9 +62,8 @@ const GroupModal = ({
   useEffect(() => {
     if (groupModalShow) {
       getRoles();
-      setFieldValue("groupId", selectedLine?.id);
     }
-  }, [groupModalShow, selectedLine?.id]);
+  }, [groupModalShow]);
 
   const handlePost = async (values) => {
     setSubmitLoading(true);
@@ -108,22 +107,32 @@ const GroupModal = ({
           <input
             type="text"
             className="form_control"
-            value={`${selectedLine?.firstName} ${selectedLine?.lastName}`}
+            value={
+              selectedLine?.firstName && selectedLine?.lastName
+                ? `${selectedLine?.firstName} ${selectedLine?.lastName}`
+                : "-"
+            }
             readOnly
           />
         </div>
         <div className="form_group">
           <label className="form_label">Grup</label>
           <CustomSelect
+            isMulti
             options={
-              roles && roles?.length > 0
+              roles?.length > 0
                 ? roles?.map((el) => ({ value: el?.id, label: el?.name }))
                 : []
             }
+            value={roles
+              ?.filter((el) => values?.groupId?.includes(el?.id))
+              .map((el) => ({ value: el?.id, label: el?.name }))}
             onChange={(selected) =>
-              setFieldValue("cardIds", [Number(selected?.value)])
+              setFieldValue(
+                "groupId",
+                selected ? selected?.map((s) => s?.value) : []
+              )
             }
-            isMulti
           />
           {errors?.cardIds && (
             <div className="form_error">{errors?.cardIds}</div>
@@ -132,7 +141,9 @@ const GroupModal = ({
       </ModalBody>
       <ModalFooter>
         <div className="modal_footer_button_groups">
-          <button className="btn btn-sm btn_danger" onClick={modalClear}>İptal</button>
+          <button className="btn btn-sm btn_danger" onClick={modalClear}>
+            İptal
+          </button>
           <button
             type="submit"
             className="btn btn-sm btn_primary"
