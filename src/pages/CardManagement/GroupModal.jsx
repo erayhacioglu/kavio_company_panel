@@ -29,7 +29,7 @@ const GroupModal = ({
   const { values, errors, handleSubmit, setFieldValue } = useFormik({
     initialValues: {
       // her zaman array!
-      groupId: selectedLine?.userGroups?.map((g) => Number(g.id)) ?? [],
+      groupIds: selectedLine?.card?.userGroups?.map((g) => Number(g.id)) ?? [],
       // bu modal tek kişiye çalışıyorsa card id’yi dizi halinde tut
       cardIds: (() => {
         const cid = selectedLine?.card?.id ?? selectedLine?.id;
@@ -44,6 +44,10 @@ const GroupModal = ({
       handlePost(values);
     },
   });
+
+  console.log('selectedLine', selectedLine?.card?.userGroups?.map((g) => Number(g.id)))
+
+  console.log('values', values)
 
   const getRoles = async () => {
     setRolesLoading(true);
@@ -125,11 +129,11 @@ const GroupModal = ({
                 : []
             }
             value={roles
-              ?.filter((el) => values?.groupId?.includes(el?.id))
+              ?.filter((el) => values?.groupIds?.includes(el?.id))
               .map((el) => ({ value: el?.id, label: el?.name }))}
             onChange={(selected) =>
               setFieldValue(
-                "groupId",
+                "groupIds",
                 selected ? selected?.map((s) => s?.value) : []
               )
             }

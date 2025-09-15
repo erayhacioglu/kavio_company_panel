@@ -10,6 +10,7 @@ import GroupModal from "./GroupModal";
 import { Check,Eye,Layers,SquarePen,X ,RotateCcw, Link2} from "lucide-react";
 import PageLoader from "../../components/PageLoader";
 import Axios from "../../services/Axios";
+import { useSelector } from "react-redux";
 
 const CardManagement = () => {
   const [refresh, setRefresh] = useState(false);
@@ -17,6 +18,8 @@ const CardManagement = () => {
     id: null,
     uniqueCode: null,
   });
+
+  const {user} = useSelector(state => state.user);
 
   const [groupModalShow,setGroupModalShow] = useState(false);
   const [selectedLine,setSelectedLine] = useState(false);
@@ -208,7 +211,7 @@ const handleCardReset = async (row) => {
           <div className="col-md-12">
             <Table
               columns={columns}
-              endpoint="/company-admin/users"
+              endpoint={`/company-admin/companies/${user?.company?.id}/users`}
               paramsMapper={(params) => ({
                 page: params.page,
                 size: params.size,
