@@ -35,6 +35,12 @@ const UserHeader = () => {
         >
           İstatistik
         </Link>
+        <Link
+          to={`/user/${id}/activity`}
+          className={isActive(`/user/${id}/activity`)}
+        >
+          Aktiviteler
+        </Link>
       </div>
     </header>
   )

@@ -18,6 +18,9 @@ const CardManagement = lazy(() => import("../pages/CardManagement"));
 const CompanyInformation = lazy(() =>
   import("../pages/CompanyManagement/CompanyInformation")
 );
+const Analize = lazy(() =>
+  import("../pages/Analize")
+);
 
 const UserDetailLayout = lazy(() => import("../layouts/UserLayout"));
 const UserLayout = lazy(() => import("../layouts/User"));
@@ -25,6 +28,7 @@ const SettingsLayout = lazy(() => import("../layouts/SettingsLayout"));
 
 const UserProfile = lazy(() => import("../pages/UserDetail/UserProfile"));
 const UserStatistics = lazy(() => import("../pages/UserDetail/UserStatistics"));
+const UserActivity = lazy(() => import("../pages/UserDetail/UserActivity"));
 
 const ProfilePage = lazy(() => import("../pages/User/Profile"));
 const SocialMediaPage = lazy(() => import("../pages/User/SocialMedia"));
@@ -62,12 +66,17 @@ export default function AppRouter() {
               path="company-information"
               element={<CompanyInformation />}
             />
+            <Route
+              path="analize"
+              element={<Analize />}
+            />
 
             {/* User detail */}
             <Route path="user/:id" element={<UserDetailLayout />}>
               <Route index element={<Navigate to="profile" replace />} />
               <Route path="profile" element={<UserProfile />} />
               <Route path="statistics" element={<UserStatistics />} />
+              <Route path="activity" element={<UserActivity />} />
             </Route>
 
             {/* Settings */}
