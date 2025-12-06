@@ -15,8 +15,8 @@ const AdminList = lazy(() => import("../pages/AdminManagement/List"));
 const AdminCreate = lazy(() => import("../pages/AdminManagement/Create"));
 const GroupManagement = lazy(() => import("../pages/GroupManagement"));
 const CardManagement = lazy(() => import("../pages/CardManagement"));
-const CompanyInformation = lazy(() =>
-  import("../pages/CompanyManagement/CompanyInformation")
+const CompanyManagement = lazy(() =>
+  import("../pages/CompanyManagement")
 );
 const Analize = lazy(() =>
   import("../pages/Analize")
@@ -63,8 +63,8 @@ export default function AppRouter() {
             <Route path="admin-list" element={<AdminList />} />
             <Route path="admin-create" element={<AdminCreate />} />
             <Route
-              path="company-information"
-              element={<CompanyInformation />}
+              path="company-management"
+              element={<CompanyManagement />}
             />
             <Route
               path="analize"

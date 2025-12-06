@@ -1,0 +1,99 @@
+.history-box {
+  width: 100%;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-family: system-ui, sans-serif;
+  font-size: 14px;
+  color: #222;
+
+  .history-header {
+    font-weight: 600;
+    padding: 8px 12px;
+    border-bottom: 1px solid #eee;
+    color: #111;
+  }
+
+  .history-body {
+    .day-label {
+      background: #f8f9fa;
+      color: #555;
+      font-weight: 600;
+      font-size: 13px;
+      padding: 6px 12px;
+      border-top: 1px solid #eee;
+    }
+
+    .history-line {
+      display: grid;
+      grid-template-columns: 60px 30px 1fr;
+      align-items: center;
+      padding: 6px 12px;
+      border-bottom: 1px solid #f1f1f1;
+      transition: background 0.2s;
+
+      &:hover {
+        background: #fafafa;
+      }
+
+      .h-time {
+        color: #777;
+        font-size: 13px;
+      }
+
+      .h-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .hicon {
+          width: 16px;
+          height: 16px;
+          color: #666;
+        }
+      }
+
+      .h-content {
+        .h-text {
+          font-size: 14px;
+          color: #222;
+        }
+
+        .h-toggle {
+          margin-top: 4px;
+          background: none;
+          border: none;
+          color: #4c7dff;
+          font-size: 13px;
+          cursor: pointer;
+          padding: 0;
+        }
+
+        .h-msg {
+          margin-top: 4px;
+          background: #f6f8ff;
+          border-left: 3px solid #4c7dff;
+          padding: 6px 8px;
+          border-radius: 4px;
+          font-size: 13px;
+          color: #333;
+
+          .h-email {
+            margin-top: 4px;
+            font-size: 12px;
+            color: #666;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .history-box .history-body .history-line {
+    grid-template-columns: 50px 24px 1fr;
+    padding: 6px 8px;
+    .h-time { font-size: 12px; }
+    .h-text { font-size: 13px; }
+  }
+}

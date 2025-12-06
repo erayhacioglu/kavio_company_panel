@@ -43,6 +43,7 @@
     "sass": "^1.93.2",
     "sweetalert2": "^11.22.2",
     "swiper": "^11.2.10",
+    "swr": "^2.3.6",
     "yup": "^1.6.1"
   },
   "devDependencies": {

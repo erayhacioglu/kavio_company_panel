@@ -23,7 +23,7 @@ const menuData = [
     type:"item",
     name:"Şirket Profili",
     icon:<Briefcase size={20}/>,
-    path:"/company-profile"
+    path:"/company-management"
   },
   {
     type:"item",

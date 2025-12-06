@@ -3,6 +3,7 @@ import InfoCard from "../../components/InfoCard";
 import Carousel from "../../components/Carousel";
 import { FaEllipsisVertical } from "react-icons/fa6";
 import { useEffect, useRef, useState } from "react";
+import HistoryFeed from "../../components/HistoryFeed";
 
 const App = () => {
   const [open, setOpen] = useState(false);
@@ -26,7 +27,11 @@ const App = () => {
       <div className="row align-items-stretch">
         <InfoCard />
         <Carousel />
-        <div className="col-12">
+        <div className="col-md-6">SOL TARAF</div>
+        <div className="col-md-6">
+          <HistoryFeed/>
+        </div>
+        {/* <div className="col-12">
           <div className="custom_card">
             <div className="custom_card_header">
               <span className="custom_card_title">Test Başlık</span>
@@ -98,7 +103,7 @@ const App = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
