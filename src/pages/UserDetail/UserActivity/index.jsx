@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import WeeklyChart from "./WeeklyChart";
 import MonthlyChart from "./MonthlyChart";
 import Timeline from "./Timeline";
 import "./index.scss";
+import { useParams } from "react-router";
+import Axios from "../../../services/Axios";
+import useDateRanges from "../../../hooks/useDateRanges";
+import PageLoader from "../../../components/PageLoader";
 
 const activityData = {
   2025: [
@@ -33,6 +37,79 @@ export default function Activity() {
   const years = Object.keys(activityData).reverse();
   const [year, setYear] = useState(years[0]);
   const [filter, setFilter] = useState("all");
+
+  const {id} = useParams();
+  const { monthStart, monthEnd, weekStart, weekEnd } = useDateRanges();
+
+  // console.log({ monthStart, monthEnd, weekStart, weekEnd })
+
+  const [monthlyData,setMonthlyData] = useState([]);
+  const [monthlyDataLoading,setMonthlyDataLoading] = useState(false);
+
+  const [monthlyStatistics,setMonthlyStatistics] = useState([]);
+  const [monthlyStatisticsLoading,setMonthlyStatisticsLoading] = useState(false);
+
+  console.log('monthlyStatistics', monthlyStatistics)
+
+  const getMonthlyData = async () => {
+    try {
+      setMonthlyDataLoading(true);
+      const res = await Axios.get(`/statistics/${id}/monthly`);
+      if(res?.data){
+        setMonthlyData(res?.data);
+      }
+    } catch (error) {
+      console.error("Aylık istatistik bilgisi getirilemedi",error);
+    }finally{
+      setMonthlyDataLoading(false);
+    }
+  }
+
+
+  const getData = async () => {
+  try {
+    // const [monthlyDownload, monthlyView] = await Promise.all([
+    //   Axios.get(`/card-interaction/location-report?cardId=${id}&type=DOWNLOAD&start=${monthStart}&end=${monthEnd}`),
+    //   Axios.get(`/card-interaction/location-report?cardId=${id}&type=VIEW&start=${monthStart}&end=${monthEnd}`),
+    // ]);
+    const [monthlyDownload, monthlyView] = await Promise.all([
+      Axios.get(`/card-interaction/location-report?cardId=${id}&type=DOWNLOAD&start=2025-08-01&end=${monthEnd}`),
+      Axios.get(`/card-interaction/location-report?cardId=${id}&type=VIEW&start=2025-08-01&end=${monthEnd}`),
+    ]);
+    console.log("monthlyDownload",monthlyDownload);
+    console.log("monthlyView",monthlyView);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const getMonthlyStatistics = async () => {
+  try {
+    setMonthlyStatisticsLoading(true);
+    const res = await Axios.get(`/statistics/${id}/monthly`);
+    if(res?.data){
+      setMonthlyStatistics(res?.data);
+    }
+  } catch (error) {
+    console.error("Aylık istatistikler getirilemedi",error);
+  }finally{
+    setMonthlyStatisticsLoading(false);
+  }
+}
+
+useEffect(() => {
+  if(!id) return;
+  getData();
+  getMonthlyStatistics();
+  getMonthlyData();
+},[id]);
+
+const generalLoading = monthlyDataLoading || monthlyStatisticsLoading;
+
+if(generalLoading){
+  return <PageLoader />
+}
+
 
   return (
     <div className="container">
@@ -79,8 +156,8 @@ export default function Activity() {
         </div>
       </div>
 
-      <WeeklyChart />
-      <MonthlyChart className="my-5"/>
+      <WeeklyChart data={monthlyData}/>
+      <MonthlyChart data={monthlyStatistics} className="my-5"/>
       <Timeline data={activityData[year]} filter={filter} />
     </div>
   );

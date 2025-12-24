@@ -29,6 +29,8 @@ const SettingsLayout = lazy(() => import("../layouts/SettingsLayout"));
 const UserProfile = lazy(() => import("../pages/UserDetail/UserProfile"));
 const UserStatistics = lazy(() => import("../pages/UserDetail/UserStatistics"));
 const UserActivity = lazy(() => import("../pages/UserDetail/UserActivity"));
+const UserContacts = lazy(() => import("../pages/UserDetail/UserInteraction/UserContacts"));
+const UserConnections = lazy(() => import("../pages/UserDetail/UserInteraction/UserConnections"));
 
 const ProfilePage = lazy(() => import("../pages/User/Profile"));
 const SocialMediaPage = lazy(() => import("../pages/User/SocialMedia"));
@@ -75,8 +77,10 @@ export default function AppRouter() {
             <Route path="user/:id" element={<UserDetailLayout />}>
               <Route index element={<Navigate to="profile" replace />} />
               <Route path="profile" element={<UserProfile />} />
-              <Route path="statistics" element={<UserStatistics />} />
+              {/* <Route path="statistics" element={<UserStatistics />} /> */}
               <Route path="activity" element={<UserActivity />} />
+              <Route path="contacts" element={<UserContacts />} />
+              <Route path="connections" element={<UserConnections />} />
             </Route>
 
             {/* Settings */}

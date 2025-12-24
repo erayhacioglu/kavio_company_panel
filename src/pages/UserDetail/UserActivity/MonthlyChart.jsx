@@ -7,16 +7,24 @@ import {
   LineChart,
 } from "recharts";
 
-const monthlyData = [
-  { name: "Oca", interactions: 140 },
-  { name: "Şub", interactions: 180 },
-  { name: "Mar", interactions: 210 },
-  { name: "Nis", interactions: 260 },
-  { name: "May", interactions: 240 },
-  { name: "Haz", interactions: 280 },
-];
+const monthNames = ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"];
 
-export default function MonthlyChart({className}) {
+export default function MonthlyChart({ className, data }) {
+  // Backend verisini Recharts formatına dönüştürme
+  const formattedData = data?.map((item) => {
+    const monthIndex = new Date(item.month).getMonth(); // 10 → Kasım
+    const interactions =
+      (item.viewCount || 0) +
+      (item.downloadCount || 0) +
+      (item.contactCount || 0) +
+      (item.connectionCount || 0);
+
+    return {
+      name: monthNames[monthIndex],
+      interactions,
+    };
+  });
+
   return (
     <div className={`custom_card ${className}`}>
       <div className="custom_card_header">
@@ -24,9 +32,9 @@ export default function MonthlyChart({className}) {
       </div>
       <div className="custom_card_body">
         <ResponsiveContainer width="100%" height={240}>
-          <LineChart data={monthlyData}>
+          <LineChart data={formattedData}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" stroke="#999" />
+            <XAxis dataKey="name" stroke="var(--textColor)" />
             <Tooltip />
             <Line
               type="monotone"
