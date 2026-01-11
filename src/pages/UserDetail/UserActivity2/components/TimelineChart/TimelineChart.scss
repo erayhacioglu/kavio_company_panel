@@ -1,0 +1,61 @@
+.timeline_chart_card {
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.06);
+  background-color: var(--background);
+  color: var(--textColor);
+  border: 1px solid var(--borderColor);
+  margin-bottom: 1.5rem;
+
+  .chart_header {
+    padding: 1rem;
+    border-bottom: 1px solid var(--borderColor);
+
+    .chart_title {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin: 0 0 0.25rem 0;
+    }
+
+    .chart_subtitle {
+      font-size: 0.875rem;
+      color: var(--subTextColor);
+      margin: 0;
+    }
+  }
+
+  .chart_body {
+    width: 100%;
+    padding: 1.5rem 0;
+  }
+}
+
+.custom_tooltip {
+  background-color: var(--background);
+  border: 1px solid var(--borderColor);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+  .tooltip_label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--borderColor);
+  }
+
+  .tooltip_item {
+    font-size: 0.8125rem;
+    margin: 0.25rem 0;
+
+    strong {
+      font-weight: 700;
+    }
+  }
+}
+
+html.dark {
+  .timeline_chart_card {
+    background-color: var(--sidebarHover);
+  }
+}

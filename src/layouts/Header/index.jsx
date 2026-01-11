@@ -16,7 +16,6 @@ const Header = ({ sidebar, setSidebar }) => {
   const { t, i18n } = useTranslation();
   const {user} = useSelector(state => state.user);
   const userLetter = user ? `${user?.name[0]}${user?.surname[0]}`:"AA"
-  console.log('user', user)
 
   const [isScrolled, setIsScrolled] = useState(false);
 

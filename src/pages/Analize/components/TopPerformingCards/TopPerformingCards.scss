@@ -1,0 +1,297 @@
+.top_performing_cards_container {
+  border-radius: 10px;
+  padding: 1.25rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.06);
+  background-color: var(--background);
+  color: var(--textColor);
+  border: 1px solid var(--borderColor);
+  margin-bottom: 1.5rem;
+  box-sizing: border-box;
+
+  &:nth-child(1) {
+    padding: 0;
+  }
+
+  .cards_header {
+    padding: 1rem;
+    border-bottom: 1px solid var(--borderColor);
+
+    .cards_title {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin: 0;
+    }
+  }
+
+  .cards_list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1rem;
+  }
+
+  .performance_card_item {
+    border: 1px solid var(--borderColor);
+    border-radius: 8px;
+    background: var(--secondBackground);
+    overflow: hidden;
+
+    .card_main {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem;
+      cursor: pointer;
+
+      &:hover {
+        background: var(--sidebarHover);
+      }
+
+      .card_left {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        flex: 1;
+        min-width: 0;
+
+        .rank_number {
+          width: 48px;
+          height: 48px;
+          border-radius: 50%;
+          background: var(--background);
+          border: 2px solid var(--borderColor);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 1.25rem;
+          font-weight: 700;
+          color: var(--subTextColor);
+          flex-shrink: 0;
+        }
+
+        .card_info {
+          min-width: 0;
+
+          .card_name {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin: 0 0 0.375rem 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+
+          .card_meta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+
+            .card_type {
+              font-size: 0.9375rem;
+              font-weight: 600;
+            }
+
+            .card_interactions {
+              font-size: 0.9375rem;
+              color: var(--subTextColor);
+            }
+          }
+        }
+      }
+
+      .card_right {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        flex-shrink: 0;
+
+        .performance_badge {
+          font-size: 0.875rem;
+          font-weight: 600;
+          padding: 0.5rem 1.25rem;
+          border-radius: 8px;
+          white-space: nowrap;
+
+          &.badge_high {
+            background: #d1fae5;
+            color: #065f46;
+          }
+
+          &.badge_medium {
+            background: #fef3c7;
+            color: #92400e;
+          }
+
+          &.badge_low {
+            background: #fee2e2;
+            color: #991b1b;
+          }
+        }
+
+        .chevron_icon {
+          width: 24px;
+          height: 24px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          svg {
+            width: 20px;
+            height: 20px;
+          }
+        }
+      }
+    }
+
+    /* ===== DETAILS ===== */
+
+    .card_details {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      padding: 0 1rem;
+      transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
+      background: var(--background);
+
+      &.expanded {
+        max-height: 500px;
+        opacity: 1;
+        padding: 1rem;
+        border-top: 1px solid var(--borderColor);
+      }
+
+      .details_grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+
+        .detail_item {
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          padding: 0.75rem;
+          background: var(--secondBackground);
+          border-radius: 8px;
+
+          .detail_icon_wrapper {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+
+            .detail_icon {
+              width: 20px;
+              height: 20px;
+            }
+          }
+
+          .detail_content {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+
+            .detail_label {
+              font-size: 0.75rem;
+              color: var(--subTextColor);
+            }
+
+            .detail_value {
+              font-size: 1rem;
+              font-weight: 700;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .show_all_btn {
+    margin: 1rem;
+    margin-top: 0;
+    width: calc(100% - 2rem);
+    padding: 0.875rem;
+    border: 1px solid var(--borderColor);
+    background: var(--background);
+    border-radius: 8px;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--textColor);
+    cursor: pointer;
+
+    &:hover {
+      background: var(--sidebarHover);
+      border-color: var(--primaryColor);
+      color: var(--primaryColor);
+    }
+  }
+}
+
+/* ===========================
+   RESPONSIVE (SADE)
+   =========================== */
+
+@media (max-width: 768px) {
+  .top_performing_cards_container {
+    padding: 1rem;
+
+    .cards_list {
+      padding: 0.75rem;
+    }
+
+    .performance_card_item {
+      .card_details {
+        .details_grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .top_performing_cards_container {
+    padding: 0.75rem;
+
+    .cards_header {
+      padding: 0.75rem;
+    }
+
+    .cards_list {
+      padding: 0.5rem;
+    }
+  }
+}
+
+/* ===========================
+   DARK MODE
+   =========================== */
+
+html.dark {
+  .top_performing_cards_container {
+    .performance_card_item {
+      .card_main {
+        .card_right {
+          .performance_badge {
+            &.badge_high {
+              background: #064e3b;
+              color: #a7f3d0;
+            }
+
+            &.badge_medium {
+              background: #78350f;
+              color: #fde68a;
+            }
+
+            &.badge_low {
+              background: #7f1d1d;
+              color: #fecaca;
+            }
+          }
+        }
+      }
+    }
+  }
+}

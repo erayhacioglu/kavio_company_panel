@@ -27,9 +27,9 @@ const menuData = [
   },
   {
     type:"item",
-    name:"Bağlantılar",
+    name:"Etkileşim",
     icon:<IdCard size={20}/>,
-    path:"/connections"
+    path:"/interaction"
   },
   {
     type:"item",

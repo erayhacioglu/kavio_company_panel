@@ -1,0 +1,47 @@
+.event_map_card {
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.06);
+  background-color: var(--background);
+  color: var(--textColor);
+  border: 1px solid var(--borderColor);
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+
+  .map_header {
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--borderColor);
+
+    .map_title {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--textColor);
+      margin: 0 0 0.25rem 0;
+    }
+
+    .map_subtitle {
+      font-size: 0.875rem;
+      color: var(--subTextColor);
+      margin: 0;
+    }
+  }
+
+  .map_body {
+    position: relative;
+    height: 600px;
+    width: 100%;
+  }
+}
+
+html.dark {
+  .event_map_card {
+    background-color: var(--sidebarHover);
+  }
+}
+
+@media (max-width: 768px) {
+  .event_map_card {
+    .map_body {
+      height: 400px;
+    }
+  }
+}

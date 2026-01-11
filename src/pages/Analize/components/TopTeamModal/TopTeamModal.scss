@@ -1,0 +1,217 @@
+.top_team_modal {
+  .modal-content {
+    border-radius: 12px;
+    border: none;
+    background-color: var(--background);
+  }
+
+  .modal-header {
+    border-bottom: 1px solid var(--borderColor);
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .modal_header_content {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
+      .modal_header_icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 10px;
+        background: linear-gradient(135deg, #FFF9E6 0%, #FFF3D6 100%);
+        color: #F59E0B;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        svg {
+          width: 24px;
+          height: 24px;
+        }
+      }
+
+      .modal_title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--textColor);
+        margin: 0;
+      }
+
+      .modal_subtitle {
+        font-size: 0.875rem;
+        color: var(--subTextColor);
+        margin: 0.25rem 0 0 0;
+      }
+    }
+
+    .modal_close_btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      border: 1px solid var(--borderColor);
+      background: var(--background);
+      color: var(--subTextColor);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+
+      &:hover {
+        background: var(--sidebarHover);
+        color: var(--textColor);
+      }
+
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+
+  .modal-body {
+    padding: 1.5rem;
+  }
+
+  .team_stats_summary {
+    margin-bottom: 1.5rem;
+
+    .summary_card {
+      background: linear-gradient(135deg, #FFF9E6 0%, #FFF3D6 100%);
+      border: 2px solid #F59E0B;
+      border-radius: 10px;
+      padding: 1.5rem;
+      text-align: center;
+
+      .summary_label {
+        font-size: 0.875rem;
+        color: #92400E;
+        margin: 0 0 0.5rem 0;
+        font-weight: 500;
+      }
+
+      .summary_value {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #92400E;
+        margin: 0;
+      }
+    }
+  }
+
+  .team_stats_grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+
+    @media (max-width: 576px) {
+      grid-template-columns: 1fr;
+    }
+
+    .team_stat_card {
+      border-radius: 10px;
+      padding: 1.25rem;
+      background: var(--background);
+      border: 1px solid var(--borderColor);
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+
+      .team_stat_icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+
+        svg {
+          width: 22px;
+          height: 22px;
+        }
+      }
+
+      .team_stat_content {
+        flex: 1;
+
+        .team_stat_label {
+          font-size: 0.8125rem;
+          color: var(--subTextColor);
+          margin: 0 0 0.25rem 0;
+        }
+
+        .team_stat_value {
+          font-size: 1.75rem;
+          font-weight: 700;
+          color: var(--textColor);
+          margin: 0;
+          line-height: 1;
+        }
+      }
+    }
+  }
+
+  .team_info_section {
+    background: var(--secondBackground);
+    border-radius: 10px;
+    padding: 1.25rem;
+
+    .info_section_title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--textColor);
+      margin: 0 0 1rem 0;
+    }
+
+    .info_row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--borderColor);
+
+      &:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+
+      .info_label {
+        font-size: 0.875rem;
+        color: var(--subTextColor);
+        font-weight: 400;
+      }
+
+      .info_value {
+        font-size: 0.875rem;
+        color: var(--textColor);
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+// Dark mode
+html.dark {
+  .top_team_modal {
+    .modal-content {
+      background-color: var(--background);
+    }
+
+    .team_stats_summary {
+      .summary_card {
+        background: linear-gradient(135deg, #3D3320 0%, #4A3F2A 100%);
+        border-color: #F59E0B;
+
+        .summary_label,
+        .summary_value {
+          color: #FCD34D;
+        }
+      }
+    }
+  }
+}

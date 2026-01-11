@@ -1,0 +1,70 @@
+.user_activity2_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 20px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.user_activity2_title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.user_activity2_subtitle {
+  color: var(--subTextColor);
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+}
+
+.filter_button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background-color: var(--primaryColor);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.06);
+  white-space: nowrap;
+
+  &:hover {
+    background-color: var(--primaryHoverColor);
+    transform: translateY(-3px);
+  }
+
+  &:active {
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+  }
+
+  &.active {
+    background-color: var(--primaryHoverColor);
+  }
+
+  .filter_icon {
+    font-size: 18px;
+  }
+}
+
+.charts_grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+
+  @media (max-width: 992px) {
+    grid-template-columns: 1fr;
+  }
+}

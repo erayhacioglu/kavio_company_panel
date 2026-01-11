@@ -1,0 +1,321 @@
+.all_cards_modal {
+  .modal-content {
+    border-radius: 12px;
+    border: none;
+    background-color: var(--background);
+  }
+
+  .modal-header {
+    border-bottom: 1px solid var(--borderColor);
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .modal_header_content {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
+      .modal_header_icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 10px;
+        background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
+        color: #2196F3;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        svg {
+          width: 24px;
+          height: 24px;
+        }
+      }
+
+      .modal_title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--textColor);
+        margin: 0;
+      }
+
+      .modal_subtitle {
+        font-size: 0.875rem;
+        color: var(--subTextColor);
+        margin: 0.25rem 0 0 0;
+      }
+    }
+
+    .modal_close_btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      border: 1px solid var(--borderColor);
+      background: var(--background);
+      color: var(--subTextColor);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+
+      &:hover {
+        background: var(--sidebarHover);
+        color: var(--textColor);
+      }
+
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+
+  .modal-body {
+    padding: 1.5rem;
+    max-height: 70vh;
+    overflow-y: auto;
+  }
+
+  .modal_cards_list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .modal_performance_card_item {
+    border: 1px solid var(--borderColor);
+    border-radius: 8px;
+    background: var(--secondBackground);
+    overflow: hidden;
+    transition: all 0.2s ease;
+
+    &:hover {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .card_main {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem;
+      cursor: pointer;
+      transition: background 0.2s ease;
+
+      &:hover {
+        background: var(--sidebarHover);
+      }
+
+      .card_left {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        flex: 1;
+
+        .rank_number {
+          width: 48px;
+          height: 48px;
+          border-radius: 50%;
+          background: var(--background);
+          border: 2px solid var(--borderColor);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 1.25rem;
+          font-weight: 700;
+          color: var(--subTextColor);
+          flex-shrink: 0;
+        }
+
+        .card_info {
+          flex: 1;
+
+          .card_name {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--textColor);
+            margin: 0 0 0.375rem 0;
+          }
+
+          .card_meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+
+            .card_type {
+              font-size: 0.9375rem;
+              font-weight: 600;
+              color: var(--textColor);
+            }
+
+            .card_interactions {
+              font-size: 0.9375rem;
+              color: var(--subTextColor);
+            }
+          }
+        }
+      }
+
+      .card_right {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+
+        .performance_badge {
+          font-size: 0.875rem;
+          font-weight: 600;
+          padding: 0.5rem 1.25rem;
+          border-radius: 8px;
+          display: inline-block;
+
+          &.badge_high {
+            background: #D1FAE5;
+            color: #065F46;
+          }
+
+          &.badge_medium {
+            background: #FEF3C7;
+            color: #92400E;
+          }
+
+          &.badge_low {
+            background: #FEE2E2;
+            color: #991B1B;
+          }
+        }
+
+        .chevron_icon {
+          width: 24px;
+          height: 24px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: var(--subTextColor);
+          transition: transform 0.2s ease;
+
+          svg {
+            width: 20px;
+            height: 20px;
+          }
+
+          &.expanded {
+            transform: rotate(0deg);
+          }
+        }
+      }
+    }
+
+    .card_details {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
+      border-top: 1px solid transparent;
+      padding: 0 1rem;
+      background: var(--background);
+
+      &.expanded {
+        max-height: 500px;
+        opacity: 1;
+        padding: 1rem;
+        border-top-color: var(--borderColor);
+      }
+
+      .details_grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+
+        @media (max-width: 768px) {
+          grid-template-columns: 1fr;
+        }
+
+        .detail_item {
+          display: flex;
+          align-items: center;
+          gap: 0.75rem;
+          padding: 0.75rem;
+          background: var(--secondBackground);
+          border-radius: 8px;
+
+          .detail_icon_wrapper {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+
+            .detail_icon {
+              width: 20px;
+              height: 20px;
+            }
+          }
+
+          .detail_content {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+
+            .detail_label {
+              font-size: 0.75rem;
+              color: var(--subTextColor);
+            }
+
+            .detail_value {
+              font-size: 1rem;
+              font-weight: 700;
+              color: var(--textColor);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Dark mode
+html.dark {
+  .all_cards_modal {
+    .modal_performance_card_item {
+      .card_main {
+        .card_left {
+          .rank_number {
+            background: var(--secondBackground);
+          }
+        }
+
+        .card_right {
+          .performance_badge {
+            &.badge_high {
+              background: #064E3B;
+              color: #A7F3D0;
+            }
+
+            &.badge_medium {
+              background: #78350F;
+              color: #FDE68A;
+            }
+
+            &.badge_low {
+              background: #7F1D1D;
+              color: #FECACA;
+            }
+          }
+        }
+      }
+
+      .card_details {
+        .details_grid {
+          .detail_item {
+            .detail_icon_wrapper {
+              opacity: 0.9;
+            }
+          }
+        }
+      }
+    }
+  }
+}

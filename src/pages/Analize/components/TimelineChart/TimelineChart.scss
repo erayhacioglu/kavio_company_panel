@@ -1,0 +1,284 @@
+// .timeline_chart_card {
+//   border-radius: 10px;
+//   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.06);
+//   background-color: var(--background);
+//   color: var(--textColor);
+//   border: 1px solid var(--borderColor);
+//   margin-bottom: 1.5rem;
+
+//   .chart_header {
+//     padding: 1rem;
+//     border-bottom: 1px solid var(--borderColor);
+
+//     .chart_title {
+//       font-size: 1.125rem;
+//       font-weight: 600;
+//       color: var(--textColor);
+//       margin: 0;
+//     }
+//   }
+
+//   .chart_body {
+//     width: 100%;
+//     padding: 1.5rem 0;
+//     .recharts-legend-wrapper {
+//       padding-top: 20px;
+//     }
+
+//     .recharts-default-legend {
+//       display: flex;
+//       justify-content: center;
+//       gap: 2rem;
+//     }
+
+//     .recharts-legend-item {
+//       display: flex;
+//       align-items: center;
+//       gap: 0.5rem;
+//     }
+
+//     .recharts-surface {
+//       overflow: visible;
+//     }
+//   }
+// }
+
+// .custom_tooltip {
+//   background-color: var(--background);
+//   border: 1px solid var(--borderColor);
+//   border-radius: 8px;
+//   padding: 0.75rem 1rem;
+//   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+//   .tooltip_label {
+//     font-size: 0.875rem;
+//     font-weight: 600;
+//     color: var(--textColor);
+//     margin: 0 0 0.5rem 0;
+//     padding-bottom: 0.5rem;
+//     border-bottom: 1px solid var(--borderColor);
+//   }
+
+//   .tooltip_item {
+//     font-size: 0.8125rem;
+//     color: var(--textColor);
+//     margin: 0.25rem 0;
+//     display: flex;
+//     justify-content: space-between;
+//     align-items: center;
+//     gap: 1rem;
+
+//     strong {
+//       font-weight: 700;
+//     }
+//   }
+// }
+
+// // Dark mode adjustments
+// html.dark {
+//   .custom_tooltip {
+//     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+//   }
+// }
+
+// // Responsive
+// @media (max-width: 768px) {
+//   .timeline_chart_card {
+//     padding: 1rem;
+
+//     .chart_header {
+//       .chart_title {
+//         font-size: 1rem;
+//       }
+//     }
+
+//     .chart_body {
+//       .recharts-default-legend {
+//         flex-direction: column;
+//         gap: 0.5rem;
+//       }
+//     }
+//   }
+// }
+
+
+// html.dark{
+//   .timeline_chart_card{
+//     background-color: var(--sidebarHover);
+//   }
+// }
+
+
+
+
+
+.timeline_chart_card {
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.06);
+  background-color: var(--background);
+  color: var(--textColor);
+  border: 1px solid var(--borderColor);
+  margin-bottom: 1.5rem;
+
+  .chart_header {
+    padding: 1rem;
+    border-bottom: 1px solid var(--borderColor);
+
+    .chart_title {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--textColor);
+      margin: 0;
+    }
+  }
+
+  .chart_body {
+    width: 100%;
+    padding: 0.75rem 0 1.5rem 0;
+
+    .recharts-legend-wrapper {
+      position: static !important;
+      width: 100% !important;
+      margin-top: 1rem;
+      transform: none !important;
+    }
+
+    .recharts-default-legend {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .recharts-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .recharts-surface {
+      overflow: visible;
+    }
+  }
+}
+
+/* Tooltip */
+.custom_tooltip {
+  background-color: var(--background);
+  border: 1px solid var(--borderColor);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+  .tooltip_label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--textColor);
+    margin: 0 0 0.5rem 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--borderColor);
+  }
+
+  .tooltip_item {
+    font-size: 0.8125rem;
+    color: var(--textColor);
+    margin: 0.25rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+
+    strong {
+      font-weight: 700;
+    }
+  }
+}
+
+/* Dark mode */
+html.dark {
+  .custom_tooltip {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  }
+
+  .timeline_chart_card {
+    background-color: var(--sidebarHover);
+  }
+}
+
+/* ===========================
+   RESPONSIVE
+   =========================== */
+
+@media (max-width: 992px) {
+  .timeline_chart_card {
+    .chart_body {
+      padding-bottom: 1.25rem;
+    }
+  }
+
+  .recharts-wrapper {
+    height: 360px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .timeline_chart_card {
+    margin-bottom: 1rem;
+
+    .chart_header {
+      padding: 0.75rem 1rem;
+
+      .chart_title {
+        font-size: 1rem;
+      }
+    }
+
+    .chart_body {
+      padding: 0.5rem 0 1.25rem 0;
+
+      .recharts-default-legend {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+    }
+  }
+
+  .recharts-wrapper {
+    height: 320px !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .timeline_chart_card {
+    border-radius: 8px;
+
+    .chart_header {
+      padding: 0.75rem;
+
+      .chart_title {
+        font-size: 0.95rem;
+      }
+    }
+
+    .chart_body {
+      padding: 0.5rem 0 1rem 0;
+    }
+  }
+
+  .recharts-wrapper {
+    height: 260px !important;
+  }
+
+  .custom_tooltip {
+    padding: 0.5rem 0.75rem;
+
+    .tooltip_label {
+      font-size: 0.75rem;
+    }
+
+    .tooltip_item {
+      font-size: 0.75rem;
+    }
+  }
+}

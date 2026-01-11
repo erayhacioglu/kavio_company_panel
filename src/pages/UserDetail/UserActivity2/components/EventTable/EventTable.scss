@@ -1,0 +1,97 @@
+.data_table_container {
+  border-radius: 12px;
+  background-color: var(--secondBackground);
+  padding: 15px 10px;
+}
+
+.data_table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: auto;
+}
+
+.data_table th,
+.data_table td {
+  padding: 15px;
+  font-size: 14px;
+  border-bottom: 1px solid var(--borderColor);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.data_table th {
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  user-select: none;
+  color: var(--textColor);
+}
+
+.data_table td {
+  color: var(--textColor);
+}
+
+.data_table tbody tr:hover {
+  background-color: var(--secondBackgroundHover);
+}
+
+.pagination_bar {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.pagination_button {
+  border-radius: 6px;
+  border: 1px solid var(--borderColor);
+  height: 36px;
+  width: 36px;
+  cursor: pointer;
+  background-color: var(--background);
+  transition: background-color 0.2s ease;
+  color: var(--textColor);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pagination_button.active_page {
+  background-color: var(--textColor);
+  color: var(--background);
+}
+
+.pagination_button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.page_size_select {
+  border-radius: 6px;
+  border: 1px solid var(--borderColor);
+  height: 36px;
+  padding: 0 10px;
+  background-color: var(--background);
+  font-size: 14px;
+  cursor: pointer;
+  color: var(--textColor);
+}
+
+.clickable_cell {
+  cursor: pointer;
+  user-select: none;
+}
+
+.ellipsis {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  color: var(--textColor);
+}
+
+.table_responsive {
+  overflow-x: auto;
+}

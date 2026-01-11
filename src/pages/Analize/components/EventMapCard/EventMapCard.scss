@@ -1,0 +1,212 @@
+.event_map_card {
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.06);
+  background-color: var(--background);
+  color: var(--textColor);
+  border: 1px solid var(--borderColor);
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+
+  .map_header {
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--borderColor);
+
+    .map_title {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--textColor);
+      margin: 0 0 0.25rem 0;
+    }
+
+    .map_subtitle {
+      font-size: 0.875rem;
+      color: var(--subTextColor);
+      margin: 0;
+    }
+  }
+
+  .map_body {
+    position: relative;
+    height: 600px;
+    width: 100%;
+  }
+}
+
+// Custom marker styles
+:global {
+  .custom-marker-icon {
+    background: transparent !important;
+    border: none !important;
+
+    .marker-pin {
+      position: relative;
+      width: 40px;
+      height: 40px;
+      border-radius: 50% 50% 50% 0;
+      transform: rotate(-45deg);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .marker-icon {
+        transform: rotate(45deg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .marker-count {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        background: #fff;
+        color: #333;
+        font-size: 0.75rem;
+        font-weight: 700;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid var(--background);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        transform: rotate(45deg);
+      }
+    }
+  }
+
+  // Marker popup styles
+  .marker-popup {
+    text-align: center;
+
+    h4 {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      margin: 0 0 0.25rem 0;
+      color: var(--textColor);
+    }
+
+    p {
+      font-size: 0.8125rem;
+      color: var(--subTextColor);
+      margin: 0;
+    }
+  }
+
+  // Cluster styles
+  .marker-cluster {
+    background-color: rgba(33, 150, 243, 0.6);
+    border-radius: 50%;
+
+    div {
+      background-color: rgba(33, 150, 243, 0.8);
+      border-radius: 50%;
+      color: white;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  .marker-cluster-small {
+    background-color: rgba(76, 175, 80, 0.6);
+
+    div {
+      background-color: rgba(76, 175, 80, 0.8);
+    }
+  }
+
+  .marker-cluster-medium {
+    background-color: rgba(255, 152, 0, 0.6);
+
+    div {
+      background-color: rgba(255, 152, 0, 0.8);
+    }
+  }
+
+  .marker-cluster-large {
+    background-color: rgba(244, 67, 54, 0.6);
+
+    div {
+      background-color: rgba(244, 67, 54, 0.8);
+    }
+  }
+
+  // Leaflet control styles
+  .leaflet-control-zoom {
+    border: 1px solid var(--borderColor) !important;
+    border-radius: 8px !important;
+    overflow: hidden;
+
+    a {
+      background-color: var(--background) !important;
+      color: var(--textColor) !important;
+      border: none !important;
+      border-bottom: 1px solid var(--borderColor) !important;
+
+      &:hover {
+        background-color: var(--sidebarHover) !important;
+      }
+
+      &:last-child {
+        border-bottom: none !important;
+      }
+    }
+  }
+
+  .leaflet-popup-content-wrapper {
+    background-color: var(--background) !important;
+    color: var(--textColor) !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+  }
+
+  .leaflet-popup-tip {
+    background-color: var(--background) !important;
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .event_map_card {
+    .map_header {
+      padding: 1rem;
+
+      .map_title {
+        font-size: 1rem;
+      }
+
+      .map_subtitle {
+        font-size: 0.8125rem;
+      }
+    }
+
+    .map_body {
+      height: 400px;
+    }
+  }
+}
+
+// Dark mode
+html.dark {
+  .event_map_card {
+    .marker-popup {
+      h4 {
+        color: var(--textColor);
+      }
+
+      p {
+        color: var(--subTextColor);
+      }
+    }
+  }
+
+  :global {
+    .leaflet-tile {
+      filter: brightness(0.8) contrast(1.2);
+    }
+  }
+}

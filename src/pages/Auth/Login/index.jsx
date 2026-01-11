@@ -36,7 +36,9 @@ const Login = () => {
   const { isLoading, isSuccess, isError, message, user } = useSelector(
     (state) => state.user
   );
-  const location = useLocation;
+  const location = useLocation();
+
+  console.log('isLoading', isLoading)
 
   const from = location.state?.from?.pathname || "/";
 
@@ -63,19 +65,24 @@ const Login = () => {
     });
 
   useEffect(() => {
-    if (isSuccess && user) {
-      toast.success(
-        `${customLoginMessage[i18n?.language]?.success?.loginSuccessMessage}`
-      );
-      navigate("/");
-    }
-    if (isError && message) {
-      toast.error(message);
-    }
-    return () => {
-      dispatch(userSliceReset());
-    };
-  }, [dispatch, isSuccess, isError, message, navigate, i18n?.language, user]);
+  if (isSuccess && user) {
+    toast.success(
+      customLoginMessage[i18n.language]?.success?.loginSuccessMessage
+    );
+    navigate("/");
+  }
+
+  if (isError && message) {
+    toast.error(message);
+  }
+}, [isSuccess, isError, message, user, navigate, i18n.language]);
+
+useEffect(() => {
+  return () => {
+    dispatch(userSliceReset());
+  };
+}, [dispatch]);
+
 
   return (
     <>
@@ -176,13 +183,13 @@ const Login = () => {
             </div>
 
             <button
-              className={`login_panel_button ${
-                isLoading ? "loading_button" : ""
-              }`}
-              onClick={handleSubmit}
-            >
-              {isLoading ? <Spinner /> : `${t("auth.login.submitButtonText")}`}
-            </button>
+  type="submit"
+  disabled={isLoading}
+  className={`login_panel_button ${isLoading ? "loading_button" : ""}`}
+>
+  {isLoading ? <Spinner size="sm" /> : t("auth.login.submitButtonText")}
+</button>
+
           </form>
         </div>
       </div>

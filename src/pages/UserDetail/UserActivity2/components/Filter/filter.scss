@@ -1,0 +1,141 @@
+.analize_filter {
+  border-radius: 10px;
+  padding: 1.2rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.06);
+  background-color: var(--background);
+  color: var(--textColor);
+  border: 1px solid var(--borderColor);
+  margin-bottom: 1.5rem;
+
+  .filter_section {
+    margin-bottom: 1.5rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    .filter_header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 600;
+      color: var(--textColor);
+      margin-bottom: 0.875rem;
+      font-size: 0.9rem;
+
+      svg {
+        width: 18px;
+        height: 18px;
+        color: var(--subTextColor);
+      }
+    }
+
+    .filter_buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.625rem;
+    }
+
+    .filter_btn {
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--subTextColor);
+      background: var(--background);
+      border-radius: 5px;
+      font-size: 0.875rem;
+      color: var(--subTextColor);
+      cursor: pointer;
+      transition: all 0.25s ease;
+      font-weight: 400;
+      white-space: nowrap;
+
+      &:hover {
+        border-color: var(--primaryColor);
+        color: var(--primaryColor);
+        background: var(--sidebarHover);
+        transform: translateY(-3px);
+      }
+
+      &.active {
+        background: var(--primaryColor);
+        border-color: var(--primaryColor);
+        color: white;
+        font-weight: 500;
+      }
+    }
+
+    .custom_date_inputs {
+      display: flex;
+      align-items: center;
+      gap: 0.875rem;
+      margin-top: 1rem;
+
+      .date_separator {
+        color: var(--subTextColor);
+        font-weight: 500;
+      }
+
+      .form_control {
+        flex: 1;
+      }
+    }
+
+    .event_type_filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.625rem;
+    }
+
+    .event_type_btn {
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--borderColor);
+      background: var(--background);
+      border-radius: 5px;
+      font-size: 0.875rem;
+      color: var(--textColor);
+      cursor: pointer;
+      transition: all 0.25s ease;
+      font-weight: 400;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      .event_type_indicator {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: var(--event-color);
+        opacity: 0.3;
+        transition: opacity 0.25s ease;
+      }
+
+      &:hover {
+        border-color: var(--event-color);
+        color: var(--event-color);
+        transform: translateY(-3px);
+
+        .event_type_indicator {
+          opacity: 0.6;
+        }
+      }
+
+      &.active {
+        border-color: var(--event-color);
+        background: var(--event-color);
+        color: white;
+        font-weight: 500;
+
+        .event_type_indicator {
+          background: white;
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
+
+html.dark {
+  .analize_filter {
+    background-color: var(--sidebarHover);
+  }
+}

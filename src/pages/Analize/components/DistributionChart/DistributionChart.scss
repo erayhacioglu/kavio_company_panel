@@ -1,0 +1,95 @@
+.distribution_chart_card {
+  border-radius: 10px;
+//   padding: 1.25rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.06);
+  background-color: var(--background);
+  color: var(--textColor);
+  border: 1px solid var(--borderColor);
+  margin-bottom: 1.5rem;
+
+  .chart_header {
+    margin-bottom: 1.25rem;
+    padding: 1rem;
+    border-bottom: 1px solid var(--borderColor);
+
+    .chart_title {
+      font-size: 1.125rem;
+      font-weight: 600;
+      margin: 0;
+    }
+  }
+
+  .chart_body {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+/* Tooltip */
+.custom_pie_tooltip {
+  background-color: var(--background);
+  border: 1px solid var(--borderColor);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+  .tooltip_label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin: 0 0 0.25rem 0;
+  }
+
+  .tooltip_value {
+    font-size: 0.8125rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    .value_number {
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .value_percent {
+      color: var(--subTextColor);
+    }
+  }
+}
+
+/* Dark mode */
+html.dark {
+  .custom_pie_tooltip {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  }
+}
+
+/* Responsive – SADE */
+@media (max-width: 768px) {
+  .distribution_chart_card {
+    padding: 1rem;
+
+    .chart_header {
+      margin-bottom: 1rem;
+
+      .chart_title {
+        font-size: 1rem;
+      }
+    }
+  }
+
+  .recharts-pie-label-text {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .distribution_chart_card {
+    padding: 0.75rem;
+  }
+
+  .recharts-pie-label-text {
+    font-size: 0.7rem;
+  }
+}

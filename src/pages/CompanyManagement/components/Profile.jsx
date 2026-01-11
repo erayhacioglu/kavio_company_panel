@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Form } from "react-bootstrap";
 import toast from "react-hot-toast";
 import { Image, Plus, Trash2 } from "lucide-react";
 import { linkData } from "../../../helpers";
@@ -15,39 +14,60 @@ const Profile = () => {
   const [updateProfileImgLoading, setUpdateProfileImgLoading] = useState(false);
 
   const [profileData, setProfileData] = useState({
-    cardId: null,
     userInfo: {
       firstName: "",
       lastName: "",
       bio: "",
     },
-    links: [
-      {
-        title: "",
-        value: "",
-      },
-    ],
-    contactInfos: [
-      {
-        contactType: "",
-        value: "",
-      },
-    ],
+    links: [],
+    contactInfos: [],
   });
 
+  const validateForm = () => {
+    if (!profileData?.userInfo?.firstName?.trim()) {
+      toast.error("Ad alanı boş bırakılamaz");
+      return false;
+    }
+    if (!profileData?.userInfo?.lastName?.trim()) {
+      toast.error("Soyad alanı boş bırakılamaz");
+      return false;
+    }
+
+    // Boş contact info kontrolü
+    const emptyContacts = profileData?.contactInfos?.filter(
+      (item) => !item?.value?.trim()
+    );
+    if (emptyContacts?.length > 0) {
+      toast.error("Lütfen boş iletişim bilgilerini doldurun veya silin");
+      return false;
+    }
+
+    // Boş link kontrolü
+    const emptyLinks = profileData?.links?.filter((item) => !item?.value?.trim());
+    if (emptyLinks?.length > 0) {
+      toast.error("Lütfen boş linkleri doldurun veya silin");
+      return false;
+    }
+
+    return true;
+  };
+
   const handleSubmit = async () => {
+    if (!validateForm()) return;
+
     setProfileUpdateLoading(true);
     try {
       const res = await Axios.post(
-        `/profile-management/update-personel-information`,
+        `/company-management/update-personel-information`,
         profileData
       );
       if (res?.status === 200) {
-        toast.success(res?.data);
+        toast.success("Profil bilgileri başarıyla güncellendi");
         getProfileData();
       }
     } catch (error) {
       console.error("Error : ", error);
+      toast.error("Profil güncellenirken bir hata oluştu");
     } finally {
       setProfileUpdateLoading(false);
     }
@@ -56,12 +76,13 @@ const Profile = () => {
   const getProfileData = async () => {
     setProfileLoading(true);
     try {
-      const res = await Axios.get(`/profile-management/get-profile/id`);
+      const res = await Axios.get(`/company-management/get-profile`);
       if (res?.status === 200) {
         setProfileData(res?.data);
       }
     } catch (error) {
       console.error("Error : ", error);
+      toast.error("Profil bilgileri yüklenirken bir hata oluştu");
     } finally {
       setProfileLoading(false);
     }
@@ -70,7 +91,7 @@ const Profile = () => {
   const getProfileImg = async () => {
     setProfileImgLoading(true);
     try {
-      const res = await Axios.get(`/card/user-images/id`);
+      const res = await Axios.get(`/company-management/get-profile-image`);
       if (res?.status === 200) {
         setProfileImg(res?.data?.profileImg);
       }
@@ -88,24 +109,36 @@ const Profile = () => {
 
   const handleUpdateProfileImg = async () => {
     if (!profileImg?.name) return;
+    
+    // File size kontrolü (5MB)
+    const maxSize = 5 * 1024 * 1024;
+    if (profileImg.size > maxSize) {
+      toast.error("Resim boyutu 5MB'dan küçük olmalıdır");
+      return;
+    }
+
     setUpdateProfileImgLoading(true);
     try {
       const formData = new FormData();
-      // formData.append("userId", id);
       formData.append("img", profileImg);
-      const res = await Axios.post("/user/update-profile-img", formData);
+      const res = await Axios.post(
+        "/company-management/update-profile-img",
+        formData
+      );
       if (res?.status === 200) {
+        toast.success("Profil resmi başarıyla güncellendi");
         getProfileImg();
       }
     } catch (error) {
       console.error("Error : ", error);
+      toast.error("Profil resmi güncellenirken bir hata oluştu");
     } finally {
       setUpdateProfileImgLoading(false);
     }
   };
 
   const generateProfileImg = () => {
-    if (profileImgLoading) return;
+    if (profileImgLoading) return "https://keenthemes.com/metronic/tailwind/react/demo1/media/avatars/300-1.png";
     if (profileImg) {
       if (profileImg?.name) {
         return URL.createObjectURL(profileImg);
@@ -119,14 +152,23 @@ const Profile = () => {
 
   const handleChangeProfileImg = (e) => {
     const uploadedImg = e.target.files[0];
+    if (!uploadedImg) return;
 
-    const validTypes = ["image/png", "image/jpg", "image/jpeg"];
+    const validTypes = ["image/png", "image/jpg", "image/jpeg", "image/webp"];
 
     if (!validTypes.includes(uploadedImg?.type)) {
-      toast.error("Geçersiz resim formatı");
-    } else {
-      setProfileImg(uploadedImg);
+      toast.error("Geçersiz resim formatı. PNG, JPG veya WEBP formatında olmalıdır");
+      return;
     }
+
+    // File size kontrolü (5MB)
+    const maxSize = 5 * 1024 * 1024;
+    if (uploadedImg.size > maxSize) {
+      toast.error("Resim boyutu 5MB'dan küçük olmalıdır");
+      return;
+    }
+
+    setProfileImg(uploadedImg);
   };
 
   const handleChangeUserInfo = (e) => {
@@ -153,6 +195,15 @@ const Profile = () => {
   };
 
   const addContactInfo = (contactType) => {
+    // Boş alan kontrolü
+    const emptyContacts = profileData?.contactInfos?.filter(
+      (item) => !item?.value?.trim()
+    );
+    if (emptyContacts?.length > 0) {
+      toast.error("Lütfen mevcut boş iletişim bilgisini doldurun veya silin");
+      return;
+    }
+
     setProfileData((prev) => ({
       ...prev,
       contactInfos: [
@@ -178,6 +229,13 @@ const Profile = () => {
   };
 
   const addLink = () => {
+    // Boş alan kontrolü
+    const emptyLinks = profileData?.links?.filter((item) => !item?.value?.trim());
+    if (emptyLinks?.length > 0) {
+      toast.error("Lütfen mevcut boş linki doldurun veya silin");
+      return;
+    }
+
     setProfileData((prev) => ({
       ...prev,
       links: [
@@ -221,6 +279,12 @@ const Profile = () => {
     return <PageLoader />;
   }
 
+  const hasEmptyFields =
+    !profileData?.userInfo?.firstName?.trim() ||
+    !profileData?.userInfo?.lastName?.trim() ||
+    profileData?.contactInfos?.some((item) => !item?.value?.trim()) ||
+    profileData?.links?.some((item) => !item?.value?.trim());
+
   return (
     <div className="row my-4">
       <div className="col-md-12">
@@ -239,35 +303,39 @@ const Profile = () => {
                     type="file"
                     className="d-none"
                     id="avatar"
-                    accept="*"
+                    accept="image/png,image/jpg,image/jpeg,image/webp"
                     onChange={handleChangeProfileImg}
                   />
                   <img
-                    src={`${generateProfileImg()}`}
-                    alt=""
+                    src={generateProfileImg()}
+                    alt="Profile"
                     className="custom_card_avatar_img"
                   />
                 </div>
               </div>
               <div className="col-md-9">
                 <div className="form_group">
-                  <label className="form_label">Ad</label>
+                  <label className="form_label">Ad *</label>
                   <input
                     type="text"
                     className="form_control"
                     name="firstName"
-                    value={profileData?.userInfo?.firstName}
+                    value={profileData?.userInfo?.firstName || ""}
                     onChange={handleChangeUserInfo}
+                    placeholder="Adınızı girin"
+                    maxLength={50}
                   />
                 </div>
                 <div className="form_group">
-                  <label className="form_label">Soyad</label>
+                  <label className="form_label">Soyad *</label>
                   <input
                     type="text"
                     className="form_control"
                     name="lastName"
-                    value={profileData?.userInfo?.lastName}
+                    value={profileData?.userInfo?.lastName || ""}
                     onChange={handleChangeUserInfo}
+                    placeholder="Soyadınızı girin"
+                    maxLength={50}
                   />
                 </div>
                 <div className="form_group">
@@ -276,8 +344,10 @@ const Profile = () => {
                     type="text"
                     className="form_control"
                     name="bio"
-                    value={profileData?.userInfo?.bio}
+                    value={profileData?.userInfo?.bio || ""}
                     onChange={handleChangeUserInfo}
+                    placeholder="Ünvanınızı girin"
+                    maxLength={100}
                   />
                 </div>
               </div>
@@ -291,6 +361,11 @@ const Profile = () => {
             <span>İletişim Bilgileri</span>
           </div>
           <div className="custom_card_body">
+            {profileData?.contactInfos?.length === 0 && (
+              <div className="text-center py-4 text-muted">
+                Henüz iletişim bilgisi eklenmemiş
+              </div>
+            )}
             <div className="add_form_item_container">
               {linkData &&
                 linkData?.map((item, idx) => (
@@ -313,14 +388,17 @@ const Profile = () => {
                     <input
                       type="text"
                       className="form_control"
-                      value={item?.value}
+                      value={item?.value || ""}
                       onChange={(e) =>
                         handleContactChange(idx, "value", e.target.value)
                       }
+                      placeholder={`${item?.contactType} bilgisi girin`}
+                      maxLength={100}
                     />
                     <button
                       className="form_delete_button"
                       onClick={() => removeContactInfo(idx)}
+                      type="button"
                     >
                       <Trash2 size={18} />
                     </button>
@@ -336,6 +414,11 @@ const Profile = () => {
             <span>Linkler</span>
           </div>
           <div className="custom_card_body">
+            {profileData?.links?.length === 0 && (
+              <div className="text-center py-4 text-muted">
+                Henüz link eklenmemiş
+              </div>
+            )}
             <div className="add_form_item_container">
               <div className="add_form_item" onClick={addLink}>
                 Link&nbsp;
@@ -347,16 +430,19 @@ const Profile = () => {
                 <div className="form_group" key={idx}>
                   <div className="form_with_delete">
                     <input
-                      type="text"
+                      type="url"
                       className="form_control"
-                      value={item?.value}
+                      value={item?.value || ""}
                       onChange={(e) =>
                         handleLinkChange(idx, "value", e.target.value)
                       }
+                      placeholder="https://example.com"
+                      maxLength={200}
                     />
                     <button
                       className="form_delete_button"
                       onClick={() => removeLink(idx)}
+                      type="button"
                     >
                       <Trash2 size={18} />
                     </button>
@@ -366,14 +452,23 @@ const Profile = () => {
           </div>
         </div>
       </div>
-      <div
-        className="d-flex align-items-center justify-content-end mt-5"
-        onClick={() => {
-          handleSubmit();
-          handleUpdateProfileImg();
-        }}
-      >
-        <button className="btn btn_primary">Kaydet</button>
+      <div className="d-flex align-items-center justify-content-end mt-5 gap-3">
+        {profileImg?.name && (
+          <button
+            className="btn btn_secondary"
+            onClick={handleUpdateProfileImg}
+            disabled={updateProfileImgLoading}
+          >
+            {updateProfileImgLoading ? "Yükleniyor..." : "Resmi Güncelle"}
+          </button>
+        )}
+        <button
+          className="btn btn_primary"
+          onClick={handleSubmit}
+          disabled={hasEmptyFields || profileUpdateLoading}
+        >
+          {profileUpdateLoading ? "Kaydediliyor..." : "Kaydet"}
+        </button>
       </div>
     </div>
   );

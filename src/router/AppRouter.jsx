@@ -11,6 +11,7 @@ import Layout from "../layouts/Layout";
 import AuthLayout from "../layouts/AuthLayout";
 
 const Home = lazy(() => import("../pages/Home"));
+const Home2 = lazy(() => import("../pages/Home2"));
 const AdminList = lazy(() => import("../pages/AdminManagement/List"));
 const AdminCreate = lazy(() => import("../pages/AdminManagement/Create"));
 const GroupManagement = lazy(() => import("../pages/GroupManagement"));
@@ -25,10 +26,12 @@ const Analize = lazy(() =>
 const UserDetailLayout = lazy(() => import("../layouts/UserLayout"));
 const UserLayout = lazy(() => import("../layouts/User"));
 const SettingsLayout = lazy(() => import("../layouts/SettingsLayout"));
+const InteractionLayout = lazy(() => import("../layouts/InteractionLayout"));
 
 const UserProfile = lazy(() => import("../pages/UserDetail/UserProfile"));
 const UserStatistics = lazy(() => import("../pages/UserDetail/UserStatistics"));
 const UserActivity = lazy(() => import("../pages/UserDetail/UserActivity"));
+const UserActivity2 = lazy(() => import("../pages/UserDetail/UserActivity2"));
 const UserContacts = lazy(() => import("../pages/UserDetail/UserInteraction/UserContacts"));
 const UserConnections = lazy(() => import("../pages/UserDetail/UserInteraction/UserConnections"));
 
@@ -37,7 +40,10 @@ const SocialMediaPage = lazy(() => import("../pages/User/SocialMedia"));
 const CompanyPage = lazy(() => import("../pages/User/Company"));
 const CatalogPage = lazy(() => import("../pages/User/Catalog"));
 
-const PermissionsPage = lazy(() => import("../pages/Settings/Permissions"))
+const PermissionsPage = lazy(() => import("../pages/Settings/Permissions"));
+
+const ConnectionsPage = lazy(() => import("../pages/Interaction/Connections"));
+const ContactRequestsPage = lazy(() => import("../pages/Interaction/ContactRequests"));
 
 const Login = lazy(() => import("../pages/Auth/Login"));
 const NotFound = lazy(() => import("../pages/ErrorPages/NotFound"));
@@ -57,7 +63,8 @@ export default function AppRouter() {
         {/* PROTECTED */}
         <Route element={<ProtectedRoute />}>
           <Route path="/" element={<Layout />}>
-            <Route index element={<Home />} />
+            {/* <Route index element={<Home />} /> */}
+            <Route index element={<Home2 />} />
 
             {/* Genel protected sayfalar */}
             <Route path="group-management" element={<GroupManagement />} />
@@ -79,6 +86,7 @@ export default function AppRouter() {
               <Route path="profile" element={<UserProfile />} />
               {/* <Route path="statistics" element={<UserStatistics />} /> */}
               <Route path="activity" element={<UserActivity />} />
+              <Route path="activity2" element={<UserActivity2 />} />
               <Route path="contacts" element={<UserContacts />} />
               <Route path="connections" element={<UserConnections />} />
             </Route>
@@ -87,6 +95,13 @@ export default function AppRouter() {
             <Route path="settings" element={<SettingsLayout />}>
               <Route index element={<Navigate to="permissions" replace />} />
               <Route path="permissions" element={<PermissionsPage />} />
+            </Route>
+
+            {/* Interaction */}
+            <Route path="interaction" element={<InteractionLayout />}>
+              <Route index element={<Navigate to="connections" replace />} />
+              <Route path="connections" element={<ConnectionsPage />} />
+              <Route path="contacts" element={<ContactRequestsPage />} />
             </Route>
 
             {/* User update */}

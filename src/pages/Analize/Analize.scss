@@ -1,14 +1,50 @@
-  .top-filters {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    margin-bottom: 1.5rem;
+.filter_button_container {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.filter_button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background-color: var(--primaryColor);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.06);
+
+  &:hover {
+    background-color: var(--primaryHoverColor);
+    transform: translateY(-3px);
   }
 
-  .metric-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 1rem;
-    margin: 2rem 0;
+  &:active {
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
   }
 
+  &.active {
+    background-color: var(--primaryHoverColor);
+  }
+
+  .filter_icon {
+    font-size: 18px;
+  }
+}
+
+.charts_grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+
+  @media (max-width: 992px) {
+    grid-template-columns: 1fr;
+  }
+}
