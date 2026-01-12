@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import HistoryFeed from "../../components/HistoryFeed";
 import HistoryFeed2 from "../../components/HistoryFeed2";
+import HistoryFeed3 from "../../components/HistoryFeed3";
 import Axios from "../../services/Axios";
 import { motion } from "framer-motion";
 
@@ -225,8 +226,9 @@ const Home2 = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2 }}
           >
-            {/* <HistoryFeed /> */}
-            <HistoryFeed2 />
+            <HistoryFeed />
+            {/* { <HistoryFeed2 /> } */}
+            {/* <HistoryFeed3 /> */}
           </motion.div>
         </div>
       </div>
