@@ -102,32 +102,22 @@ const Filter = ({ filters, onFiltersChange, groups }) => {
         />
       </div>
 
-      {/* Event Tipi */}
+      {/* Kullanıcılar */}
       <div className="filter_section">
         <div className="filter_header">
-          <FiActivity />
-          <span>Event Tipi</span>
+          <FiUsers />
+          <span>Kullanıcılar</span>
         </div>
-        <div className="filter_buttons">
-          <button
-            className={`filter_btn ${filters.eventTypes.includes('view') ? 'active' : ''}`}
-            onClick={() => handleEventTypeToggle('view')}
-          >
-            Görüntülenme
-          </button>
-          <button
-            className={`filter_btn ${filters.eventTypes.includes('connection') ? 'active' : ''}`}
-            onClick={() => handleEventTypeToggle('connection')}
-          >
-            Bağlantı
-          </button>
-          <button
-            className={`filter_btn ${filters.eventTypes.includes('contact_request') ? 'active' : ''}`}
-            onClick={() => handleEventTypeToggle('contact_request')}
-          >
-            İletişim İsteği
-          </button>
-        </div>
+        <Select
+          isMulti
+          options={groupOptions}
+          value={selectedGroups}
+          onChange={handleGroupChange}
+          placeholder="Kullanıcılar seçin"
+          className="react_select_container"
+          classNamePrefix="react_select"
+          styles={customSelectStyles}
+        />
       </div>
     </div>
   );

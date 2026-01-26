@@ -18,6 +18,7 @@ import HistoryFeed2 from "../../components/HistoryFeed2";
 import HistoryFeed3 from "../../components/HistoryFeed3";
 import Axios from "../../services/Axios";
 import { motion } from "framer-motion";
+import DateRangeStatsDemo from "../../components/DateRangeStatsDemo";
 
 const Home2 = () => {
   const companyId = useSelector((state) => state.user?.user?.company?.id);
@@ -232,6 +233,9 @@ const Home2 = () => {
           </motion.div>
         </div>
       </div>
+      <>
+                <DateRangeStatsDemo />
+      </>
     </div>
   );
 };
