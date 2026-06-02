@@ -11,7 +11,7 @@ import AllCardsModal from "./components/AllCardsModal";
 import DistributionChart from "./components/DistributionChart";
 import EventMapCard from "./components/EventMapCard";
 import { events as mockEvents, groups as mockGroups } from "./mockData";
-import "./analize.scss";
+import "./Analize.scss";
 import EventTable from "./components/EventTable";
 
 const Analize8 = () => {
